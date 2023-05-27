@@ -1,0 +1,432 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%This is a science homework template. Modify the preamble to suit your needs. 
+%The junk text is   there for you to immediately see how the headers/footers look at first 
+%typesetting.
+
+
+\documentclass[12pt]{article}
+
+%AMS-TeX packages
+\usepackage{amssymb,amsmath,amsthm} 
+%geometry (sets margin) and other useful packages
+\usepackage[margin=1.25in]{geometry}
+\usepackage{graphicx,ctable,booktabs}
+
+
+%
+%Redefining sections as problems
+%
+\makeatletter
+\newenvironment{problem}{\@startsection
+       {section}
+       {1}
+       {-.2em}
+       {-3.5ex plus -1ex minus -.2ex}
+       {2.3ex plus .2ex}
+       {\pagebreak[3]%forces pagebreak when space is small; use \eject for better results
+       \large\bf\noindent{P }
+       }
+       }
+\makeatother
+
+\makeatletter
+\newenvironment{solution}{\@startsection
+       {subsection}
+       {2}
+       {-.2em}
+       {-3.5ex plus -1ex minus -.2ex}
+       {2.3ex plus .2ex}
+       {\pagebreak[3]%forces pagebreak when space is small; use \eject for better results
+       \large\bf\noindent\emph{(sol) }
+       }
+       }
+\makeatother
+
+%
+%Fancy-header package to modify header/page numbering 
+%
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%\addtolength{\headwidth}{\marginparsep} %these change header-rule width
+%\addtolength{\headwidth}{\marginparwidth}
+\lhead{Problem \thesection}
+\chead{} 
+\rhead{\thepage} 
+\lfoot{\small\scshape course name} 
+\cfoot{} 
+\rfoot{\footnotesize PS \#} 
+\renewcommand{\headrulewidth}{.3pt} 
+\renewcommand{\footrulewidth}{.3pt}
+\setlength\voffset{-0.25in}
+\setlength\textheight{648pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
+%Contents of problem set
+%    
+\begin{document}
+
+\title{4}
+\author{Campinghedgehog}
+\date{May 23, 2023}
+
+\maketitle
+
+\thispagestyle{empty}
+
+\begin{problem}{}
+    Suppose $f$ is a real funcvtion defined on $\mathbb{R}^{1}$ which satisfies
+    $$ \lim_{h\to0} [f(x+h)-f(x-h)] = 0$$
+    for every $x \in \mathbb{R}^{1}$. Does this imply that $f$ is continuous?
+\end{problem}
+\begin{solution}{}
+    No. It could be the case the $f(x)$ does not equal the left and right limits, a discontinuity of the first type.
+\end{solution}
+
+\begin{problem}{}
+    If $f$ is a continuous mapping of a metric space $X$ into a metric space $Y$, prove that 
+    $$f(\overline{E}) \subset \overline{f(E)}$$
+    for every set $E \subset X$.
+\end{problem}
+\begin{solution}{}
+    Let $E$ be arbitrary. Let $p \in \overline{E}$. If $p \in E$, then $f(p) \in \overline(f(E))$.
+    So let $p$ be a limit point of $E$ but $p \notin E$.  Want to show that $f(p)$ is a limit point of $f(E)$.
+    Fix $epsilon$. Since $f$ is continuous, there exists a $\delta > 0$ such that 
+    $d(f(p),f')) < \epsilon \implies d(p,p') < \delta$. Since $p$ is a limit point of $E$,
+    $\forall \delta > 0, \exists p' \in E: d(p,p') < \delta$. This implies $f(p)$ is also a limit point of $f(E)$. \qed
+\end{solution}
+
+\begin{problem}{}
+    Let $f$ be a continuous function on a metric space $X$. let $Z(f)$(the \emph{zero set} of f)
+    be the set of all $p \in X$ at which $f(p)=0$. Prove that $Z(f)$ is closed.
+\end{problem}
+\begin{solution}{}
+    The target set is the singletone set of $\{0\}$, which is closed. Since $f$ is continuous,
+    $f^{-1}(\{0\})$ is also closed. \qed
+\end{solution}
+
+\begin{problem}{}
+    Let $f$ and $g$ be continuous mappings of a metric space $X$ into a metric space $Y$,
+    and let $E$ be a dense subset of $X$. Prove that $f(E)$ is dense in $f(X)$. 
+    If $g(p)=f(p)$ for all $p \in E$. (In order words, a continuous mapping is determined by
+    its values on a dense subset of its domain.)
+\end{problem}
+\begin{solution}{}
+    Want to show $$f(X) = \overline{f(E)}$$
+    \\
+    From problem 2, we know that $f(\overline{E}) \subset \overline{f(E)}$.
+    Since $E$ is dense in $X$, we have $\overline{E}=X$.
+    So $f(X) \subset \overline{f(E)}$. Since $f(E) \subset f(X)$, and $X$ is the whole space,
+    $f(X)$ is closed and contains $f(E)$ so it also contains $f(\overline{E})$. 
+    \\
+    The second part follows from uniqueness of limits.
+\end{solution}
+
+\begin{problem}{}
+    If $f$ is a real continuous function defined on a closed set $E \subset \mathbb{R}^{1}$,
+    prove that there exist continuous real functions $g$ on $\mathbb{R}^{1}$ such that 
+    $g(x)=f(x)$ for all $x \in E$. (Such functions $g$ are called \emph{continuous extensions} of $f$
+    from $E$ to $\mathbb{R}^1$.) Show that the result becomes false 
+\end{problem}
+\begin{solution}{}
+    We can simply let $g$ be constant equal to the value of the edges of $E$. 
+    Since $E$ is closed, there exists a minimum and maximum value. 
+    Let
+    \begin{equation}
+        g(x)=
+        \begin{cases}
+            min(E), & \text{if}\ x<min(E) \\
+            f(x), & \text{if}\ x \in E \\
+            max(E), & \text{if}\ x > max(E) \\
+        \end{cases}
+    \end{equation}
+    By construction the function is continuous.
+    If "closed" is emitted, then there may not exist a min or max of E. 
+\end{solution}
+
+\begin{problem}{}
+    If $f$ is defined on $E$, the graph of $f$ is the set of points $(x,f(x))$, for $x \in E$.
+    In particular, if $E$ is the set of real numbers, and $f$ is real-valued, the graph of $f$ is a subsetof the plane.
+    \\
+    Suppose $E$ is compact, and prove that $f$ is continuous if and only if its graph is compact.
+\end{problem}
+\begin{solution}{}
+    Suppose $E$ is compact and $f$ is continuous. Want to show: $(x,f(x))$ is compact. \\
+    Since $f$ is continuous, $f(E)$ is compact. Since both $E$ and $f(E)$ are compact, there exists
+    finite open covers for both. The cartesian product of these covers is still finite. 
+    \\
+    Suppose both $E$ and $(x,f(x))$ are compact. Using the fact that the projection functions are continuous,
+    We get that both $E$ and $f(E)$ are compact, which implies $f$ is continuous. (?) \qed
+\end{solution}
+
+\begin{problem}{}
+    Boring problem.
+\end{problem}
+\begin{solution}{}
+\end{solution}
+
+\begin{problem}{}
+    Let $f$ be a real uniformly continuous function on the bounded set $E$ in $\mathbb{R}^{1}$. \\
+    Prove that $f$ is bounded on $E$. \\
+    Show that the conclusion is false if boundedness of $E$ is omitted from the hypothesis.
+\end{problem}
+\begin{solution}{}
+    Since $f$ is uniformly continuous. Let $\epsilon = 1$, so that
+    $$\exists \delta > 0, \forall p,q \in E, d(p,q) < \delta \implies d(f(p),f(q)) < \epsilon$$
+    We then chunk $E$ into $N$ segments that are at most $\delta$ width. In this case,
+    $N=\lceil\frac{(a-b)}{\delta}\rceil$. \\
+    Let $x\in E$ be arbitrary. It will fall into one of these segments and by construction will be less than $\delta$
+    away from one of the boundary points, call it $z$. Then since $d(x,z) < \delta$, $d(f(x),f(z)) < 1$.
+    Since there are finite number of segments, there exists a maximum boundary point $f(z)$. 
+    Since $x$ was arbitrary, it follows that $f(E)$ is bounded by the max of boundary points $f(z)+1$. \qed.
+    \\ 
+    For the second part, consider $f(x)=x$ on $\mathbb{R}$.
+\end{solution}
+
+\begin{problem}{}
+    Show that the requirement in the definition of uniform continuity can be rephrased as follows, in terms of diameters
+    of sets: To every $\epsilon > 0$, there exists a $\delta > 0$ such that diam $f(E) < \epsilon$ for all
+    $E \subset X$ with diam $E < \delta$.
+\end{problem}
+\begin{solution}{}
+    $$\forall E \subset X, (\forall p,q \in E, d(f(p),f(q)) < \epsilon) \land (\forall p,q in E, d(p,q)<\delta)$$
+    can be rewritten as:
+    $$\forall E \subset X,\forall p,q \in E, (d(f(p),f(q)) < \epsilon) \land (d(p,q)<\delta)$$
+    equals
+    $$\forall p,q \in X, (d(f(p),f(q)) < \epsilon) \land (d(p,q)<\delta)$$
+    \qed
+\end{solution}
+
+\begin{problem}{}
+    Theorem 4.19: Let $f$ be a continuous mapping of a compact metric space $X$ into a metric space $Y$.
+    $f$ is uniformly continuous on $X$. \\
+    \\
+    Complete the details of the following alternative proof of Theorem 4.19: \\
+    If $f$ is not uniformly continuous, then for some $\epsilon > 0$ there are sequences
+    $\{p_n\},\{q_n\}$ in $X$ such that $d_X(p_n,q_n) \longrightarrow 0$ but $d_Y(f(p_n),f(q_n)) > \epsilon$,
+    Use Theorem 2.37 to obtain a contradiction. \\
+    2.37: If $E$ is an infinite subset of a compact set $K$, then $E$ has a limit point in $K$.
+\end{problem}
+\begin{solution}{}
+    Assume $f$ is not uniformly continuous. Then fix $\epsilon > 0$ such that there are sequences
+    $\{p_n\},\{q_n\}$ in $X$ such that $d_X(p_n,q_n) \longrightarrow 0$ but $d_Y(f(p_n),f(q_n)) > \epsilon$.
+    It follows that ${f(p_n)},{f(q_n)}$ never converge to the same point, so $\{p_n\},\{q_n\}$ do not converge
+    to a limit point. But $\{p_n\},\{q_n\}$ are infinite subsets of a compact metric space, and therefore must
+    have a limit point. $\Rightarrow\mskip-\thinmuskip\Leftarrow$
+    \qed
+\end{solution}
+
+\begin{problem}{}
+    Suppose $f$ is a uniformly continuous mapping of a metric space $X$ into a metric space $Y$ and prove that 
+    $\{f(x_n)\}$ is a Cauchy sequence in $Y$ for every Cauchy sequence $\{x_n\}$ in $X$. Use this result to give an 
+    alternative proof of the theorem stated in Exercise 13.
+\end{problem}
+\begin{solution}{}
+    Let $\{x_n\}$ in $X$ be a Cauchy sequence. I.e.
+    $$\forall \delta > 0, \exists N, \forall n,m > N, d(x_n,x_m) < \delta$$
+    Want to show: $\{f(x_n)\}$ is a Cauchy sequence in $Y$.
+    Since $f$ is uniformly continuous, $\forall \epsilon > 0, d(x_n,x_m) < \delta \implies d(f(x_n),f(x_m)) < \epsilon$
+    So for each $\epsilon$ there also exists an $M$ such that $d(f(x_n),f(x_m)) < \epsilon$ if $m,n > M$. \qed
+\end{solution}
+
+\begin{problem}{}
+    A uniformly continuous function of a uniformly continuous function is uniformly continuous. 
+    State this more precisely and prove it.
+\end{problem}
+\begin{solution}{}
+    Let $f$ be a uniformly continuous function from metric space $X$ to metric space $Y$,
+    and $g$ be a uniformly continuous from metric space $Y$ to metric space $Z$. Then
+    $g \circ f$ from $X$ to $Z$ is uniformly continuous. \\
+    Proof. \\
+    Want to show: 
+    $$\forall \epsilon > 0, \exists \delta > 0 s.t. \forall p,q \in X, d(p,q) < \delta \implies d(g\circ f(p),g\circ f(q)) < \epsilon$$
+    Fix $\epsilon > 0$. Since $g$ is uniformly continuous, there exist a $\gamma > 0 ...$ such that
+    $$\forall a,b \in Y, d(a,b) < \gamma \implies d(g(a),g(b))<\epsilon$$
+    Since $f$ is uniformly continuous, there exists a $\delta > 0$ such that
+    $$\forall x,y \in X, d(x,y) < \delta \implies d(g(a),g(b))<\gamma$$
+    \qed
+\end{solution}
+
+\begin{problem}{}
+    Let $E$ be a dense subset of a metric space $X$, and let $f$ be a uniformly continuous real function defined on $E$.
+    Prove that $f$ has a continuous extension from $E$ to $X$. \\
+    Hint: For each $p \in X$ and each positive integer $n$, let $V_n(p)$ be the set of all $q \in E$ with $d(p,q)< 1/n$.
+    Use Exercise 9 to show that the intersection of the closures of the sets $f(V_1(p)),f(V_2(p)),...$ consists of a
+    single point, say $g(p)$, of $\mathbb{R}^1$. Prove that the function $g$ so defined on $X$ is the desired extension
+    of $f$.
+\end{problem}
+\begin{solution}{}
+    Following the hint, from Exercise 9, since diam of $V_n(p)$ goes to 0, and $f$ is uniformly continuous,
+    $f(V_1(p))$ also goes to 0, which implies the set only consist of a single point, call it $g(p)$.
+    It is clear that if $p\in E$, then $f(p)=g(p)$. Then, assume $p \notin E$. Since $E$ is dense in $X$,
+    $p$ then must be a limit point of $E$. Want to show that $g$ is continuous. Since $p$ is a limit point of $E$,
+    $g(p)$ is defined, and by construction contiuous as $g(p)$. \qed
+\end{solution}
+
+\begin{problem}{}
+    Let $I=[0,1]$ be the closed unit interval. Suppose $f$ is a continous mapping of $I$ into $I$. Prove that
+    $f(x)=x$ for at least one $x \in I$.
+\end{problem}
+\begin{solution}{}
+    Consider $g(x) = x - f(x)$. Contradiction follows from the intermediate value theorem.
+\end{solution}
+
+\begin{problem}{}
+    Call a mapping of $X$ into $Y$ open if $f(V)$ is an open set in $Y$ whenever $V$ is an open set in $X$.
+    Prove that every continuous open mapping in $\mathbb{R}^1$ into $\mathbb{R}^1$ is monotonic.
+\end{problem}
+\begin{solution}{}
+    Since $f$ is open, there exists an $f^{-1}$ that is continuous. If $f$ is not monotonic, then something something
+    $f^{-1}$ not a function or not continous.
+\end{solution}
+
+\begin{problem}{}
+    Let $\lceil x \rceil$ denote the largest integer contained in $x$, that is $\lceil x \rceil$ is the integer
+    such that $x-1 < \lceil x \rceil \le x$; and let $(x) = x - \lceil x \rceil$ denote the fractional part of $x$.
+    WHat discontinuities do the above functions have?
+\end{problem}
+\begin{solution}{}
+    Integers. They "jump" to the next int, or drop to 0 from almost 1.
+\end{solution}
+
+\begin{problem}{}
+    Let $f$ be a real function on $(a,b)$. Prove that the set of points at which $f$ has a simple discontinuity is
+    at most countable. \\
+    Hint: Let $E$ be the set on which $f(x-) < f(x+)$. With each point $x$ of $E$ associate a triple $(p,q,r)$ of
+    rational numbers such that \\
+    (a) $f(x-) < p < f(x+)$,
+    (b) $a < q < t < x$ implies $f(t) < p$,
+    (c) $x < t < r < b$ implies $f(t) > p$.
+\end{problem}
+\begin{solution}{}
+\end{solution}
+
+\begin{problem}{}
+    Every rational $x$ can be written in the form $x = m/n$, where $n>0$ and $m$ and $n$ are intergers without any
+    common divisors. When $x=0$, we take $n=1$. Consider the function defined on $\mathbb{R}^1$ by
+    \begin{equation}
+        f(x)=
+        \begin{cases}
+            0, & \text{if}\ x \text{ irrational} \\
+            \frac{1}{n}, & \text{if}\ x = \frac{m}{n} \\
+        \end{cases}
+    \end{equation}
+    Prove that $f$ is continuous at every irrational point, and that $f$ has a simple discontinuity at every rational point.
+\end{problem}
+\begin{solution}{}
+    Let $x$ be irrational. Fix $\epsilon > 0$. We can always find a $\delta > 0$ since if say $p$ is irrational then
+    $d(f(x),f(p)) = 0 < \epsilon$. If $p$ is rational, then the closer we get to $x$, the larger $n$ will be which means
+    $f(p) \rightarrow 0$. \\
+    Let $x$ be rational. Since the irrationals are dense in the rationals, $f(x)$ never converges to $1/n$ since
+    $d(x,irrational)$ is always equal to at least $1/n$. The limits exist, but $f(x) ~= lim f(x)$, 
+    i.e. simple discontinuity. \qed
+\end{solution}
+
+\begin{problem}{}
+    Suppose $f$ is a real function with domain $\mathbb{R}^1$ which has the intermediate value property:
+    If $f(a)<c<f(b)$, then $f(x)=c$ for some $x$ between $a$ and $b$. \\
+    Suppose also, for every rational $r$, that the set of all $x$ with $f(x)=4$ is closed.
+    Prove that $f$ is continuous. \\
+    Hint: If $x_n \rightarrow X_0$ but $f(x_n) > r > f(x_0)$ for some $r$ and all $n$, then $f(T_n)=r$ for some
+    $t_n$ between $x_0$ and $x_n$; thus $t_n \rightarrow x_0$. Find a contradiction.
+\end{problem}
+\begin{solution}{}
+    From the hint, it follows that $x_0$ is a limit point for the sequence $t_n$, yet $x_0$ is strictly greater
+    than $r$ which means it is not contained in the the preimage of $r$ and thus the preimage is not closed. \qed
+\end{solution}
+
+\begin{problem}{}
+    if $E$ is a nonempty subset of a metric space $X$, define the distance from $x \in X$ to $E$ by
+    $$\rho_E(x)=\inf_{z\in E} d(x,z)$$
+    a) Prove that $\rho_E(x)=0$ if an only if $x \in \overline{E}$. \\
+    b) Prove that $\rho_E$ is a uniformly continuous function on $X$, by showing that
+    $$|\rho_E(x)-\rho_E(y)| \le d(x,y)$$
+    for all $x\in X$,$y\in Y$.\\
+    Hint: $\rho_E(x) \le d(x,z) \le d(x,y) + d(y,z)$ so that 
+    $$\rho_E(x) \le d(x,y) + \rho_E(y)$$
+\end{problem}
+\begin{solution}{}
+    a) Assume that $\rho_E(x)=0$. Want to show that $x \in \overline{E}$ \\
+    Since $\rho_E(x)=0$, for all open neighborhoods of $x$, there exists a point in $e$ within that neighborhood. \\
+    Assume $x \in \overline{E}$. If $x \in E$, then $d(x,x)=0$. Assume $x \notin E$. Then $x$ must be a limit point
+    of $E$. Thus, for all $\epsilon > 0$, there exists $e \in E$ such that $d(x,e) < \epsilon$, which implies that the
+    $\inf d(x,e)$ for $e$ in $E$ is equal to 0.
+    b) Let $x,y \in X$ be arbitrary. Want to show 
+    $$|\rho_E(x)-\rho_E(y)| \le d(x,y)$$
+    Following the hint, since $\rho_E(x) \le d(x,z) \le d(x,y) + d(y,z)$, by the triangle inequality, we have that
+    $$\rho_E(x) \le d(x,y) + \rho_E(y)$$
+    which implies
+    $$|\rho_E(x)-\rho_E(y)| \le |d(x,y) + \rho_E(y) - \rho_E(y)| \le |d(x,y)| \le d(x,y)$$
+    \qed
+\end{solution}
+
+\begin{problem}{}
+    Suppose $k$ and $F$ are disjoint sets in a metric space $X$, $K$ is compact, $F$ is closed. \\
+    Prove that there exists a $\delta > 0$ such that $d(p,q) > \delta$ if $p \in K$, $q \in F$.
+    Hint: $\rho_F$ is a continuous positive function on $K$. \\
+    Show that the conclusion may fail for two disjoint closed sets if neither is compact.
+\end{problem}
+\begin{solution}{}
+    Since $K$ is compact, any continuous function on $K$ must be bounded, i.e. there exists min and max values of 
+    the image. Let the minmum value of $\rho_F(K)$ be some $k \in K$. Since $K$ and $F$ are disjoint, $k \notin F$.
+    By problem 20, this implies $\rho_F(k) > 0$. Thus, for all $p,q$, there exists some $\delta > 0$ such that 
+    $$d(p,q) \ge \rho_F(q) \ge \rho_F(k) \ge \delta > 0$$
+    \qed
+    If $K$ is not compact, then it's image may not be bounded below by 0. 
+\end{solution}
+
+\begin{problem}{}
+    I dont like this problem
+\end{problem}
+\begin{solution}{}
+\end{solution}
+
+\begin{problem}{}
+    A real-valued function defined in $(a,b)$ is said to be convex if 
+    $$f(\lambda x + (1-\lambda)y) \le \lambda f(x)+(1-\lambda)f(y)$$
+    whenver $a < x <b$, $a < y < b$, $0 < \lambda < 1$. Prove that every convex function is continuous.
+    Prove that every increasing convex function of a convex function is convex. \\
+    If $f$ is convex in $(a,b)$ and if $a<s<t<u<b$, show that 
+    $$\frac{f(t)-f(s)}{t-s} \le \frac{f(u)-f(s)}{u-s} \le \frac{f(u)-f(t)}{u-t}$$
+\end{problem}
+\begin{solution}{}
+    a) Let $f$ be a convex function. Want to show 
+    $$\forall f(p), \forall \epsilon>0,\exists \delta >0, \forall q, d(p,q) <\delta \implies d(f(p),f(q))<\epsilon$$ 
+    Fix $f(p)$. Fix $\epsilon > 0$.  
+    ff go next.
+\end{solution}
+
+\begin{problem}{}
+    Asume that $f$ is a continuous real function defined in $(a,b)$ such that 
+    $$f(\frac{x+y}{2}) \le \frac{f(x)+f(y)}{2}$$
+    for all $(x,y) \in (a,b)$. Prove that $f$ is convex.
+\end{problem}
+    problem sucks
+\begin{solution}{}
+
+\end{solution}
+
+\begin{problem}{}
+    Also sucks
+\end{problem}
+\begin{solution}{}
+\end{solution}
+
+\begin{problem}{}
+    Suppose $X,Y,Z$ are metric spaces and $Y$ is compact. Let $f$ map $X$ into $Y$, let $g$ be a continuous 
+    one-to-one mapping of $Y$ into $Z$, and put $h(x)=g(f(x))$ for $x\in X$. \\
+    Prove that $f$ is uniformly continuous if $h$ is uniformly continuous.
+    Hint: $g^{-1}$ has a compact domain $g(Y)$, and $f(x)=g^{-1}(h(x))$. \\
+    Prove also that $f$ is continuous if $h$ is continuous. \\
+    Show by modifying Example 4.21 that the compactness of $Y$ cannot be omitted from the hypothesis, even when $X$
+    and $Z$ are compact.
+\end{problem}
+\begin{solution}{}
+    Following the hint, since $g^{-1}$ has a compact domain $g(Y)$, and $f(x)=g^{-1}(h(x))$, and since
+    uniformly continous function of uniformly continuous function is uniformly continuous. Continuity follows
+    from the same reasoning. \\
+
+\end{solution}
+
+\end{document}
