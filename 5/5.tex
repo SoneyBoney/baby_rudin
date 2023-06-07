@@ -49,11 +49,9 @@
 \pagestyle{fancy}
 %\addtolength{\headwidth}{\marginparsep} %these change header-rule width
 %\addtolength{\headwidth}{\marginparwidth}
-\lhead{Problem \thesection}
 \chead{} 
 \rhead{\thepage} 
 \cfoot{} 
-\rfoot{\footnotesize PS \#} 
 \renewcommand{\headrulewidth}{.3pt} 
 \renewcommand{\footrulewidth}{.3pt}
 \setlength\voffset{-0.25in}
@@ -73,6 +71,361 @@
 \maketitle
 
 \thispagestyle{empty}
+
+\begin{problem}{1}
+    Let $f$ be defined for all real $x$, and suppose that
+    $$|f(x) - f(y)| \le (x-y)^2$$
+    for all real $x$ and $y$. Prove that $f$ is constant.
+\end{problem}
+\begin{solution}{}
+    Divide both sides by $(x-y)$:
+    $$\frac{|f(x) - f(y)|}{(x-y)} \le (x-y)$$
+    for all $x,y$. Which implies $f'(x) = 0$ for all $x$. \qed
+\end{solution}
+
+\begin{problem}{2}
+    Suppose $f'(x) > 0$ in $(a,b)$. Prove that $f$ is strictly increasing in $(a,b)$,
+    and let $g$ be its inverse function. Prove that $g$ is differentiable, and that
+    $$g'(f(x)) = \frac{1}{f'(x)} \qquad (a<x<b)$$
+\end{problem}
+\begin{solution}{}
+    Since $f'(x) > 0$ for all $x \in (a,b)$, $\lim_{t\rightarrow x} \frac{f(t)-f(x)}{t-x} > 0$
+    for all $x$. Pick $\delta > 0$ such that $a<x-\delta < t<x<b$. 
+    Then $f(t)-f(x) < 0$ since $t < x$, which implies $f(t)<f(x)$. \\
+    Want to show that $g$ is differentiable, i.e., for all $x$ in $(a,b)$
+    $$\lim_{t\rightarrow x} \frac{g(f(t))-g(f(x))}{f(t)-f(y)}$$
+    exists. \\
+    The above limit is equal to 
+    $$\lim_{t\rightarrow x} \frac{t-x}{f(t)-f(x)}$$
+    which exists by limit laws, and is equal to $\frac{1}{f'(x)}$. \qed
+\end{solution}
+
+\begin{problem}{3}
+    Suppose $g$ is a real function on $\mathbb{R}^1$, with bounded derivative (say $|g'| \le M$).
+    Fix $\epsilon > 0$, and define $f(x) = x + \epsilon g(x)$. Prove that $f$ is one-to-one
+    if $\epsilon$ is small enough. (A set of admissible values of $\epsilon$ can be determined
+    which depends only on $M$.)
+\end{problem}
+\begin{solution}{}
+    Want to show $x \ne y \implies f(x) \ne f(y)$. Let $x \ne y$. Fix $\epsilon < \frac{1}{M}$.
+    Suppose to the contrary that there exists $x,y$ such that $x \ne y \and f(x) = f(y)$.
+    $$x+\frac{g(x)}{M} = y+\frac{g(y)}{M}$$
+    which implies
+    $$(x-y)=\frac{g(y)-g(x)}{M} \implies M = |\frac{g(y)-g(x)}{(x-y)}|$$
+    which contradicts the fact that $M > g'$. \qed
+
+\end{solution}
+
+\begin{problem}{4}
+    If
+    $$C_0 + \frac{C_1}{2} + ... + \frac{C_{n-1}}{n} + \frac{C_n}{n+1} = 0$$
+    where $C_0,...,C_n$ are real constants, prove that the equation
+    $$C_0 + C_1 x + ... + C_{n-1}x^{n-1} + C_nx^n = 0$$
+    has at least one real root between 0 and 1.
+\end{problem}
+\begin{solution}{}
+    Let $P(x)$ be defined:
+    $$P(x) = C_0 x + \frac{C_1}{2} x^2+ ... + \frac{C_{n-1}}{n}x^{n} + \frac{C_n}{n+1}x^{n+1}$$
+    then $P'(x) = C_0 + C_1 x + ... + C_{n-1}x^{n-1} + C_nx^n$.
+    Also, $P(0) = 0$ is obvious, and $P(1) = 0$ by hypothesis. Since $P(x) \qquad (0<x<1)$ is bounded,
+    it acheives either a local min or max, which implies $P'(x) = 0$ for some $x \in (0,1)$. \qed
+    Also Rolle's theorem.
+\end{solution}
+
+\begin{problem}{5}
+    Suppose $f$ is defined and differentiable for every $x>0$, and $f'(x) \rightarrow 0$ as 
+    $x \rightarrow + \infty$. Put $g(x)=f(x+1)-f(x)$. Prove that $g(x)\rightarrow 0$ as
+    $x \rightarrow + \infty$.
+\end{problem}
+\begin{solution}{}
+    Fix $\epsilon > 0$. Then there exists a $N$ such that if $x > N$ then $|f'(x)| < \epsilon$.
+    Using the mean value theorem, there exists a $x' \in (x,x+1)$ such that
+    $f(x+1)-f(x) = (x+1 - x)f'(x')$. Since $x' > N$ we have that $|f'(x')| < \epsilon$. \qed
+\end{solution}
+
+\begin{problem}{6}
+    Suppose\\
+    (a) $f$ is continuous for $x \ge 0$, \\
+    (b) $f'(x)$ exists for $x>0$, \\
+    (c) $f(0)=0$, \\
+    (d) $f'$ is monotonically increasing. \\
+    Put
+    $$g(x) = \frac{f(x)}{x} \qquad (x>0)$$
+    and prove that $g$ is monotonically increasing.
+\end{problem}
+\begin{solution}{}
+    Diffentiating $g(x)$ with the quotient rule gives
+    $$\frac{xf'(x)-f(x)}{x^2}$$
+    Using the mean value theorem, for all $x$, there exists some $x' \in (0,x)$
+    $$f(x)-f(0)=(x-0)f'(x') \implies f(x) = xf'(x')$$
+    Since $f'$ is monotonically increasing, $x > x'$ so $f(x) < xf'(x)$. 
+    Thus
+    $$\frac{xf'(x)-f(x)}{x^2} > 0 \implies g'(x) > 0$$
+    for all $x$. \qed
+\end{solution}
+
+\begin{problem}{7}
+    Suppose $f'(x)$,$g'(x)$ exist, $g'(x)\ne 0$, and $f(x)=g(x)=0$. Prove that
+    $$lim_{t\rightarrow x} \frac{f(t)}{g(t)} = \frac{f'(x)}{g'(x)}$$
+    (This holds also for complex functions.)
+\end{problem}
+\begin{solution}{}
+    $$lim_{t\rightarrow x} \frac{f(t)}{g(t)} = lim_{t\rightarrow x} \frac{f(t)-f(x)}{g(t)-g(x)}$$
+    $$= lim_{t\rightarrow x} \frac{\frac{f(t)-f(x)}{t-x}}{\frac{g(t)-g(x)}{t-x}}$$
+    $$= \frac{lim_{t\rightarrow x}\frac{f(t)-f(x)}{t-x}}{lim_{t\rightarrow x}\frac{g(t)-g(x)}{t-x}}$$
+    $$= \frac{f'(x)}{g'(x)}$$
+    \qed
+\end{solution}
+
+\begin{problem}{8}
+    Suppose $f'$ is continuous on $[a,b]$ and $\epsilon>0$. Prove that there exists $\delta>0$ such
+    that 
+    $$\bigg | \frac{f(t)-f(x)}{t-x} - f'(x) \bigg | < \epsilon$$
+    whenever $0< |t-x|<\delta$, $a \le x \le b$, $a\le t \le b$.
+    (This could be expressed by saying that $f$ is uniformly differentiable on $[a,b]$ if $f'$ is
+    continuous on $[a,b]$.) Does this hold for vector-valued functions too?
+\end{problem}
+\begin{solution}{}
+    Since $f'$ is continuous, fix $\epsilon > 0$. Then there exists a $\delta >0$ such that
+    if $|y-x| < \delta$ then $|f'(y)-f'(x)| < \epsilon$. Let $0<|t-x|<\delta$.
+    By the mean value theorem there exists a $z$ between $t$ and $x$ such that:
+    $$f(t)-f(x) = (t-x)f'(z)$$
+    for some $z$ in $[a,b]$.
+    So $\frac{f(t)-f(x)}{t-x} = f'(z)$. Since $|z-x|<\delta$ we have that $|f'(z)-f'(x)|<\epsilon$.
+    \qed
+\end{solution}
+
+\begin{problem}{9}
+    Let $f$ be a continuous real function on $\mathbb{R}^1$, of which it is known that $f'(x)$
+    exists for all $x \ne 0$ and that $f'(x)\rightarrow 3$ as $x\rightarrow 0$. Does it follow
+    that $f'(0)$ exists?
+\end{problem}
+\begin{solution}{}
+    $$f'(0) = \lim_{t\rightarrow 0} \frac{f(t)-f(0)}{t-0}$$
+    Using L'hopital's rule:
+    $$\lim_{t\rightarrow 0} \frac{f(t)-f(0)}{t-0} = \lim_{t\rightarrow 0} \frac{f'(t)-f(0)'}{t'}$$
+    $$=\lim_{t\rightarrow 0} \frac{f'(t)}{1} = 3$$
+    \qed
+\end{solution}
+
+\begin{problem}{10}
+    Suppose $f$ and $g$ are complex differentiable functions on $(0,1)$, $f(x) \to 0$,
+    $g(x)\to 0$, $f'(x)\to A$, $g'(x)\to B$ as $x\to 0$, where $A$ and $B$ are complex
+    numbers, $B\ne 0$. Prove that 
+    $$\lim_{x\to 0} \frac{f(x)}{g(x)}=\frac{A}{B}$$
+    Compare with Example 5.18. Hint:
+    $$\frac{f(x)}{g(x)} =\bigg\{\frac{f(x)}{x} -A\bigg\} \cdot \frac{x}{g(x)} + A \cdot \frac{x}{g(x)}$$
+    Apply theorem 5.13 to the real and imaginary parts of $f(x)/x$ and $g(x)/x$.
+\end{problem}
+\begin{solution}{}
+    Not sure what it means to apply to the real and imaginary parts. But if we do that, then it follows that
+    $\lim_{x\to 0} \frac{f(x)}{x} = A$ and $\lim_{x\to 0} \frac{g(x)}{x} = B$. If we plug it into the big equation
+    above, we get our conclusion, along with using the inverse of a limit rule thing. \qed.
+\end{solution}
+
+\begin{problem}{11}
+    Suppose $f$ is defined in a neighborhood of $x$, and suppose $f"(x)$ exists. Show that
+    $$\lim{h\to 0} \frac{f(x+h)+f(x-h)-2f(x)}{h^2} = f"(x)$$
+    Show by example that the limit may exist even if $f"(x)$ does not. Hint: Use Theorem 5.13.
+\end{problem}
+\begin{solution}{}
+    Applying theorem 5.13 once we get that 
+    $$\lim_{h\to 0} \frac{f(x+h)+f(x-h)-2f(x)}{h^2} = \lim_{h\to 0} \frac{f'(x+h)-f'(x-h)}{2h}$$
+    applying again:
+    $$= \lim_{h\to 0} \frac{f"(x+h)+f"(x-h)}{2} = f"(x)$$
+\end{solution}
+
+\begin{problem}{12}
+    If $f(x)=|x|^3$, compute $f'(x)$, $f"(x)$, for all real x, and show that $f^{(3)}(0)$ does not exist. 
+\end{problem}
+\begin{solution}{}
+    $f'(x)=3|x|^2$, $f"(x)=6|x|$
+    And $f^{(3)}(0)$ does not exist since the left and right hand limits of the derivative of the second derivative are not equal,
+    therefore the limit itself does not exist. \qed
+\end{solution}
+
+\begin{problem}{13}
+    Skip for now.
+\end{problem}
+\begin{solution}{}
+\end{solution}
+
+\begin{problem}{14}
+    Let $f$ be a diffentiable real function defined in $(a,b)$. Prove that $f$ is convex if and only if $f'$ is monotonically
+    increasing. Assume next that $f"(x)$ exists for every $x \in (a,b)$, and prove that $f$ is convex iff and only if
+    $f"(x) \ge 0$ for all $x \in (a,b)$.
+\end{problem}
+\begin{solution}{}
+    $(\implies)$ Suppose $f$ is convex. Want to show that $f'$ is monotonically increasing.
+    Skip for now. 
+\end{solution}
+
+\begin{problem}{15}
+    Suppose $a \in \mathbb{R}^1$, $f$ is a twice-diffentiable real function on $(a,\infty)$, and $M_0,M_1,M_2$ are
+    the least upper bounds of $|f(x)|,|f'(x)|,|f"(x)|$, respectively, on $(a,\infty)$. \\
+    Prove that 
+    $$M_1^2 \le 4 M_0 M_2$$
+\end{problem}
+\begin{solution}{}
+    Following the hint, let $h>0$, by Taylor's theorem:
+    $$f'(x) = \frac{1}{2h} [f(x+h)-f(x)] - hf"(\xi)$$
+    for some $\xi \in (x,x+2h)$. Hence
+    $$|f'(x)| \le hM_2 + \frac{M_0}{h}$$
+    which implies
+    $$|f'(x)|^2 \le h^2M_2^2 + 2M_0M_2 +\frac{M_0^2}{h^2}$$
+    Since h was arbitrary, let $h = \sqrt{\frac{M_0}{M_2}}$, which is greater than 0.
+    Then 
+    $$|f'(x)|^2 \le \frac{M_0}{M_2}M_2^2 + 2M_0M_2 + M_0^2 \frac{M_2}{M_0}$$
+    $$|f'(x)|^2 \le 4M_0M_2$$
+    \qed
+\end{solution}
+
+\begin{problem}{16}
+    Suppose $f$ is twice-diffentiable on $(0,\infty)$, $f"$ is bounded on $(0,\infty)$,
+    and $f(x) \to 0$ as $x \to \infty$. Prove that $f'(x) \to 0$ as $x \to \infty$.
+    Hint: Let $a \to \infty$ in Exercise 15.
+\end{problem}
+\begin{solution}{}
+    Following the hint, if we let $a \to \infty$ in 15, we get that $M_0 \to 0$ and 
+    since $M_1^2 \le 4M_0M_2$, it follows that $f'(x)$ goes to zero as $x \to \infty$.
+    \qed
+\end{solution}
+
+\begin{problem}{17}
+    Suppose $f$ is a real, three times diffentiable function on $[-1,1]$, such that
+    $$f(-1)=0, \quad f(0)=0, \quad f(1)=1, \quad f'(0)=0$$
+    Prove that $f^{(3)}(x) \ge 3$ for some $x \in (-1,1)$. \\
+    Note that equality holds for $\frac{1}{2}(x^3 + x^2)$. \\
+    Hint:Use Theorem 5.15, with $\alpha=0$ and $\beta= \pm1$, to show there exist
+    $s \in (0,1)$ and $t\in (-1,0)$ such that
+    $$f^{(3)}(s) + f^{(3)}(t) = 6$$
+\end{problem}
+\begin{solution}{}
+    Following the hint, we apply Taylor's theorem:
+    $$f(\beta) = P(\beta) + \frac{f^{(n)}(x)}{n!}(\beta - \alpha)^n$$
+    Let $n=3$.\\
+    With $\alpha=0,\beta=1$:
+    $$f(1) = P(1) + \frac{f^{(3)}(s)}{3!}(1)^3$$
+    $$1 = P(1) + \frac{f^{(3)}(s)}{3!}(1)^3$$
+    $$1 = \frac{f"(\alpha)}{2} + \frac{f^{(3)}(s)}{6}$$
+    With $\alpha=0,\beta=-1$:
+    $$f(-1) = P(-1) + \frac{f^{(3)}(t)}{3!}(-1)^3$$
+    $$0 = P(-1) + \frac{f^{(3)}(t)}{3!}(-1)^3$$
+    $$0 = \frac{f"(t)}{2} - \frac{f^{(3)}(x)}{6}$$
+    Subtracting the latter from the former:
+    $$1 = \frac{f^{(3)}(s)}{6} + \frac{f^{(3)}(x)}{6}$$
+    $$6 = f^{(3)}(s) + f^{(3)}(x)$$
+    \qed
+\end{solution}
+
+\begin{problem}{18}
+    Suppose $f$ is a real function on $[a,b]$, $n$ is a positive integer, and $f^{(n-1)}$ exists for every
+    $t \in [a,b]$. Let $\alpha,\beta$ and $P$  be as in Taylor's Theorem (5.15). Define
+    $$Q(t)=\frac{f(t)-f(\beta)}{t-\beta}$$
+    for $t\in [a,b]$, $t \ne \beta$, diffentiate
+    $$f(t)-f(\beta) = (t-\beta)Q(t)$$
+    $n-1$ times at $t=\alpha$, and derive the following version of Taylor's Theorem:
+    $$f(\beta)=P(\beta)\frac{Q^{(n-1)}(\alpha)}{(n-1)!}(\beta-\alpha)^n$$
+\end{problem}
+\begin{solution}{}
+    We can show through induction that:
+    $$f^{(k)}(t)=(t-\beta)Q^{(k)}(t)+kQ^{(k-1)}(t)$$
+    Let $k=1$. From the product rule, we get:
+    $$f'(t)=(t-\beta)Q'(t)+Q(t)$$
+    and that completes the basis case. \\
+    $$f^{(k)}(t)=(t-\beta)Q^{(k)}(t)+kQ^{(k-1)}(t)$$
+    $$f^{(k+1)}(t)=(t-\beta)Q^{(k+1)}(t)+Q^{(k)}(t)+kQ^{(k)}(t)$$
+    by the product rule again. \\
+    Multiplying both sides by $\frac{(\beta-\alpha)^k}{k!}$
+    $$\frac{(\beta-\alpha)^k}{k!}f^{(k)}(\alpha)=-\frac{(\beta-\alpha)^{(k+1)}}{k!}Q^{(k)}(\alpha)+\frac{(\beta-\alpha)^k}{(k-1)!}Q^{(k-1)}(\alpha)$$
+    Summing from 1 to $n-1$ the right hand side telescopes to get:
+    $$-\frac{Q^{(n-1)}(\alpha)}{(n-1)!}(\beta-\alpha)^n+f(\beta)-f(\alpha)$$
+    we move $-f(\alpha)$ over to the left hand side and we get:
+    $$\sum_{k=0}^{n-1}\frac{f^{(k)}(\alpha)}{k!}(\beta-\alpha)^k=-\frac{Q^{(n-1)}(\alpha)}{(n-1)!}(\beta-\alpha)^n+f(\beta)$$
+    The left hand side is $P(\beta)$, and we arrive at our conclusion. \qed
+\end{solution}
+
+\begin{problem}{19}
+    Suppose $f$ is defined in $(-1,1)$ and $f'(0)$ exists. Suppose $-1< \alpha_n < \beta_n < 1$,
+    $\alpha_n \to 0$, and $\beta_n \to 0$ as $n \to \infty$. Define the difference equation;
+    $$D_n = \frac{f(\beta_n)-f(\alpha_n)}{\beta_n-\alpha_n}$$
+    Prove the following statements: \\
+    (a) If $\alpha_n < 0 < \beta_n$, then $\lim D_n = f'(0)$. \\
+    (b) If $0 < \alpha_n < \beta_n$ and $\{\frac{\beta_n}{(\beta_n-\alpha_n)}\}$ is bounded, then $\lim D_n = f'(0)$.\\
+    (c) If $f'$ is continuous in $(-1,1)$, then $\lim D_n = f'(0)$.\\
+    Give an example in which $f$ is diffentiable in $(-1,1)$ (but $f'$ is not continuous at 0) and which $\alpha_n,\beta_n$
+    tend to 0 in such a way that $\lim D_n$ exists but is different from $f'(0)$.
+\end{problem}
+\begin{solution}{}
+    (a) Fix $\epsilon >0$, since $f'(0)$ exists, a $\delta$ such that if $0<|x|<\delta$ then
+    $$\frac{f(x)-f(0)}{x-0} - f'(0) < \epsilon$$ 
+    $D_n$ can be rewritten as $D_n = \frac{f(\beta_n)-f(0)+f(0)-f(\alpha_n)}{\beta_n-\alpha_n}$
+    $$=\frac{f(\beta_n)-f(0)}{\beta_n-\alpha_n} - \frac{f(\alpha_n)-f(0)}{\beta_n-\alpha_n}
+    = \frac{\beta_n}{\beta_n-\alpha_n}\frac{f(\beta_n)-f(0)}{\beta_n} - \frac{\alpha}{\beta_n-\alpha_n}\frac{f(\alpha_n)-f(0)}{\alpha}
+    $$
+    Then we can choose $\alpha> -\delta$ and $\beta < \delta$ so that 
+    $$|D_n - f'(0)| \le
+    \frac{\beta_n}{\beta_n-\alpha_n}|\frac{f(\beta_n)-f(0)}{\beta_n}-f'(0)|$$
+    $$
+    - \frac{\alpha}{\beta_n-\alpha_n}|\frac{f(\alpha_n)-f(0)}{\alpha}-f'(0)|
+    \le \frac{\beta_n}{\beta_n-\alpha_n}\epsilon
+    - \frac{\alpha}{\beta_n-\alpha_n}\epsilon
+    = \epsilon
+    $$
+    \qed \\
+    (b) How is this different from a? \\
+    Edit: Okay I see, because in a $\alpha_n < 0 < \beta_n$ the denominator is always greater than the numerator so
+    the thing is always bounded. So here we can do something similar in a, but use the assumption of boundedness to
+    get a delta. Choose $\delta$ such that the distance is less than $\frac{\epsilon}{2M}$.
+    (c) Since $f'$ is continuous, $D_n=f'(x_n)$ and $x_n \to 0$ implies $D_n=f'(0)$. \qed 
+\end{solution}
+
+\begin{problem}{20}
+    Problem too vague. Skip for now.
+\end{problem}
+\begin{solution}{}
+\end{solution}
+
+\begin{problem}{21}
+    Let $E$ be a closed subset of $\mathbb{R}^1$. We saw in Exercise 22, Chap. 4, that there is a real continuous function
+    $f$ on $\mathbb{R}^1$ whose zero set is $E$. Is it possible, for each closed set $E$, to find such an $f$ which is
+    diffentiable on $\mathbb{R}^1$, or one which is $n$ times diffentiable, or even one which ahs derivatives of all orders
+    on $R^1$?
+\end{problem}
+\begin{solution}{}
+    No clue. Skip for now.
+\end{solution}
+
+\begin{problem}{22}
+    Suppose $f$ is a real function on $(-\infty,\infty)$. Call $x$ a fixed point of $f$ if $f(x)=x$. \\
+    (a) If $f$ is diffentiable and $f'(t)\ne 1$ for every real $t$, prove that $f$ has at most one fixed point.
+    (b) Show that the function $f$ defined by 
+    $$f(t)=t+(1+e^t)^{-1}$$
+    has no fixed point although $0<f'(t)<1$ for all real $t$.
+    (c)However, if there is a constant $A < 1$ such that $|f'(t)| \le A$ for all real $t$,
+    prove that a fixed point $x$ of $f$ exists, and that $x = \lim x_n$, where $x_1$ is an arbitarty real number and
+    $$x_{n+1}=f(x_n)$$
+    for $n=1,2,3...$.
+\end{problem}
+\begin{solution}{}
+    (a) Suppose for the sake of contradiction that, WLOG, $x<y$ and $f(x)=x \and f(y)=y$. By the mean value theorem,
+    there exists a $x < c <y$ such that $f'(c) = \frac{f(y)-f(x)}{}$. 
+    $$f(x)=x \and f(y)=y \implies f(y)-f(x)=y-x$$
+    so $f'(x) = 1$. \qed \\
+    (b) $(1+e^t)^{-1} \ne 0$ for all $t$ so there can be no fixed points.
+
+\end{solution}
+
+\begin{problem}{23}
+    The function defined by
+    $$f(x) = \frac{x^3 + 1}{3}$$
+    has three fixed pints, say $\alpha,\beta,\gamma$, where
+    $$-2<\alpha<-1, \qquad 0<\beta<1, \qquad 1<\gamma<2$$
+    For arbitrarily chosen $x_1$, define $\{x_n\}$ by setting $x_{n+1}=f(x_n)$.\\
+    (a) If $x_1 < \alpha$, prove that $x_n\to -\infty$ as $n\to \infty$.
+\end{problem}
+\begin{solution}{}
+\end{solution}
 
 \begin{problem}{24}
     The process described in part (c) of Exercise 22 can of course be applied to functions that map $(0,\infty)$ to $(0,\infty)$.\\
@@ -133,9 +486,72 @@
     (f) it keeps jumping back and forth and doesnt converge
 \end{solution}
 
-\begin{problem}{}
+\begin{problem}{26}
+    Suppose $f$ is diffentiable on $[a,b]$, $f(a)=0$, and there is a real number $A$ such that
+    $|f'(x)| \le A|f(x)|$ on $[a,b]$. Prove that $f(x)=0$ for all $x\in [a,b]$. Hint: Fix 
+    $x_0 \in [a,b]$, let 
+    $$M_0=\sup|f(x)|, \qquad M_1 = \sup|f'(x)|$$
+    for $a \le x \le x_0$. For any such $x$,
+    $$|f(x)| \le M_1(x_0-a) \le A(x_0-a)M_0$$
+    Hence $M_0=0$ if $A(x_0-a)<1$. That is, $f=0$ on $[a,x_0]$. Proceed.
 \end{problem}
 \begin{solution}{}
+    Scratch work: taking the hint, we can solve for some $x_0$ such that $M_0=0$. 
+    $$A(x_0-a)=\frac{1}{2} \implies (x_0-a)=\frac{1}{2A} \implies x_0 = a + \frac{1}{2A}$$.
+    Thus if $x_0 = a + \frac{1}{2A}$, then there exists some $x$ in the interval such that 
+    it is the case that $M_0 \le \frac{1}{2}M_0$ which implies $f=0$ on $[a,x_0]$. Then
+    let $x_n = x_{n-1} + \frac{1}{2A}$. Then at some $n$, $x_n > b$, so we have our conclusion.
+    \qed
+\end{solution}
+
+\begin{problem}{27}
+    Let $\phi$ be a real function defined on a rectangle $R$ in the plane, given by $a \le x \le b$,
+    $\alpha \le y \le \beta$. A solution to the initial-value problem
+    $$y' = \phi(x,y), \qquad y(a)=c \qquad (\alpha \le c \le \beta)$$
+    is, by definition, a differentiable function $f$ on $[a,b]$ such that $f(a)=c$, 
+    $\alpha\le f(x) \le \beta$ and
+    $$f'(x)=\phi(x,f(x)) \qquad (a\le x \le b)$$
+    Prove that such a problem has at most one solution if there is a constant $A$ such that
+    $$|\phi(x,y_2)-\phi(x,y_1)| \le A|y_2-y_1|$$
+    whenever $(x,y_1)\in R$ and $(x,y_2)\in R$.\\
+    Hint: APply exercise 26 to the difference of two solutions. Note that this uniqueness theorem does 
+    not hold for the initial-value problem
+    $$y'=y^{\frac{1}{2}}, \qquad y(0)=0,$$
+    which has two solutions: $f(x)=0$ and $f(x)=x^2/4$. Find all other solutions.
+\end{problem}
+\begin{solution}{}
+    Assume for sake of contradiction that there exists two different solutions $f_1,f_2$.
+    Then define $g(x)=f_2(x)-f_1(x)$. Thus
+    $$|g'(x)| = |f_2'(x)-f_1'(x)| = |\phi(x,y_2)-\phi(x,y_1)| \le A|y_2-y_1|$$
+    $$=A|f_2(x)-f_1(x)|= A|g(x)|$$
+    Thus, $g=0$ which implies $f_1=f_2$, ie the solution is unique.
+    \qed
+\end{solution}
+
+\begin{problem}{28}
+    Formulate the prove an analogous uniqueness theorem for systems of differential equations
+    of the form 
+    $$y'_j = \phi_j(x,y_1,...,y_k), \qquad y_j(a)=c_j \qquad (j=1,...,k)$$
+\end{problem}
+\begin{solution}{}
+    Vector valued functions have same inequalities needed for the proof so the result follows.
+    \qed
+\end{solution}
+
+\begin{problem}{29}
+    Specialize Exercise 28 by considering the system
+    $$y'_j = y_{j+1} \qquad (j=1,...,k-1)$$
+    $$y'_k = f(x) - \sum_{j=1}^{k}g_j(x)y_j$$
+    where $f,g_1,...,g_k$ are continuous real functions on $[a,b]$, and derive a uniqueness theorem
+    for solutions of the equation
+    $$y^{(k)}+g_k(x)y^{(k-1)} +...+g_2(x)y'+g_1(x)y=f(x)$$
+    subject to initial conditions
+    $$y(a)=c_1, \qquad, y'(a)=c_2, \qquad ..., \qquad y^{(k-1)}(a)=c_k$$
+\end{problem}
+\begin{solution}{}
+    Since all $g$s are continuous, the image is also bounded. So the norms are also bounded. Which gives
+    us the assumptions of 28.
+    \qed
 \end{solution}
 
 \end{document}
