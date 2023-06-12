@@ -1,0 +1,280 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%This is a science homework template. Modify the preamble to suit your needs. 
+%The junk text is   there for you to immediately see how the headers/footers look at first 
+%typesetting.
+
+
+\documentclass[12pt]{article}
+
+%AMS-TeX packages
+\usepackage{amssymb,amsmath,amsthm} 
+%geometry (sets margin) and other useful packages
+\usepackage[margin=1.25in]{geometry}
+\usepackage{graphicx,ctable,booktabs}
+
+
+%
+%Redefining sections as problems
+%
+\makeatletter
+\newenvironment{problem}{\@startsection
+       {section}
+       {1}
+       {-.2em}
+       {-3.5ex plus -1ex minus -.2ex}
+       {2.3ex plus .2ex}
+       {\pagebreak[3]%forces pagebreak when space is small; use \eject for better results
+       \large\bf\noindent{P }
+       }
+       }
+\makeatother
+
+\makeatletter
+\newenvironment{solution}{\@startsection
+       {subsection}
+       {2}
+       {-.2em}
+       {-3.5ex plus -1ex minus -.2ex}
+       {2.3ex plus .2ex}
+       {\pagebreak[3]%forces pagebreak when space is small; use \eject for better results
+       \large\bf\noindent\emph{(sol) }
+       }
+       }
+\makeatother
+
+%
+%Fancy-header package to modify header/page numbering 
+%
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%\addtolength{\headwidth}{\marginparsep} %these change header-rule width
+%\addtolength{\headwidth}{\marginparwidth}
+\chead{} 
+\rhead{\thepage} 
+\cfoot{} 
+\renewcommand{\headrulewidth}{.3pt} 
+\renewcommand{\footrulewidth}{.3pt}
+\setlength\voffset{-0.25in}
+\setlength\textheight{648pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
+%Contents of problem set
+%    
+\begin{document}
+
+\title{Title}
+\author{Author}
+\date{Date}
+
+\maketitle
+
+\thispagestyle{empty}
+
+\begin{problem}{1}
+    Suppose $\alpha$ increases on $[a,b]$, $a \le x_0 \le b$, $\alpha$ is continuous at $x_0$, $f(x_0)=1$, and
+    $f(x)=0$ if $x \ne x_0$. Prove that $f$ is Riemann integrable and that $\int f \,d\alpha =0$.
+\end{problem}
+\begin{solution}{}
+    Since $f$ is bounded and only has 1 discontinuity, and since $\alpha$ is continuous where $f$ is not, theorem
+    6.10 applies and $f$ is Riemann integrable. \\
+    Because $f$ is bounded, and $\alpha$ is continuous at $x_0$, $\Delta\alpha \to 0$ implies $\int f \to 0$.
+    \qed
+\end{solution}
+
+\begin{problem}{2}
+    Suppose $f \ge 0$, $f$ is continuous on $[a,b]$, and $\int_{a}^{b}f(x)\,dx=0$. Prove that $f(x)=0$
+    for all $x\in [a,b]$. (Compare this to Exercise 1).
+\end{problem}
+\begin{solution}{}
+    Since $f \ge 0$, let $f(x_0) = M > 0$. Since $f$ is continuous, by the intermediate value theorem, it assumes
+    a point $f(x_1) = T < M$. Then there exists a partition such that $L(P,f) > 0$ which implies 
+    $\int_{a}^{b}f(x)\,dx >0$ which is a contradiction.
+    \qed
+\end{solution}
+
+\begin{problem}{3}
+    Define three functions: $\beta_1,\beta_3,\beta_3$ as follows: $\beta_j=0$ if $x < 0$, $\beta_j=1$ if $x > 0$ for
+    $j=1,2,3$; and $\beta_1(0)=0,\beta_2(0)=1,\beta_3(0)=\frac{1}{2}$. Let $f$ be a bounded function on $[-1,1]$. \\
+    (a) Prove that $f \in \mathcal{R}(\beta_1)$ if and only if $f(0+)=f(0)$ and that then
+    $$\int f \, d\beta_1 = f(0)$$
+    (b) State and prove a similar result for $\beta_2$. \\
+    (c) Prove that $f \in \mathcal{R}(\beta_3)$ if and only if $f$ is continuous at 0. \\
+    (d) If $f$ is continuous at 0 prove that 
+    $$\int f \,d\beta_1 = \int f \,d\beta_2 = \int f \,d\beta_3 =f(0)$$
+\end{problem}
+\begin{solution}{}
+    (a) Assume $f(0+)=f(0)$. We only need to consider an open neighborhood of 0 since theorem 6.10 takes care of everywhere
+    else. Fix $\epsilon > 0$ and let $\delta > 0$ such that $x < \delta \implies |f(x)-f(0)| < \epsilon$. Let $P$ be a
+    partition such that $\Delta x_i < \delta$ for all $i$. We only need to consider $x \ge 0$. In particular only the 
+    partition such that $x_i = 0$. Then 
+    $$U(P,f,\beta_1) - L(P,f,\beta_1) = (M_i - m_i)\Delta \beta_1(x_i) = (M_i - m_i) < \epsilon$$
+    And thus $f \in \mathcal{R}(\beta_1)$. \\
+    Assume $f \in \mathcal{R}(\beta_1)$. If $f(0+) \ne f(0)$, then we see that it $\Delta \beta_1$ around a neighborhood
+    of $0+$ is always 1, so the upper and lower sums never converge to each other. \\
+    (b) same as a \\
+    (c) same as a and b \\
+    (d) follows from fact that if a limit exists, the left and right hand limits are equal.
+\end{solution}
+
+\begin{problem}{4}
+    If $f(x)=0$ for all irrational $x$, $f(x)=1$ for all rational $x$, prove that $f$ is not integrable on $a[b]$ for
+    any $a < b$.
+\end{problem}
+\begin{solution}{}
+    The rationals and irrationals are dense in each other, thus the upper sum is always equal to 1 while the lower sum
+    is always 0. 
+    \qed
+\end{solution}
+
+\begin{problem}{5}
+    Suppose $f$ is a bounded real function on $[a,b]$, and $f^2 \in \mathcal{R}$ on $[a,b]$. Does it follow that 
+    $f\in \mathcal{R}$? Does the answer change if we assume that $f^3 \in \mathcal{R}$?
+\end{problem}
+\begin{solution}{}
+    No. Take the last problems function but let $f(x)=1$ if x is rational and $-1$ if irrational. $f^2$ is the constant
+    function 1 which is integrable, but $f$ is not. If $f^3$ is integrable then so is $f$ since the cube root is 
+    continuous on the real line. 
+    \qed
+\end{solution}
+
+\begin{problem}{6}
+    Let $P$ be the Contor set constructed in Sec. 2.44. Let $f$ be a bounded real function on $[0,1]$ which is continuous
+    at every point outside $P$. Prove that $f \in \mathcal{R}$ on $[0,1]$. \\
+    HINT: $P$ can be covered by finitely many segments whose total length can be made as small as desired. Proceed as in
+    Theorem 6.10.
+\end{problem}
+\begin{solution}{}
+    Cantor set has measure 0. Rest follows as in 6.10.
+\end{solution}
+
+\begin{problem}{7}
+    Suppose $f$ is a real function on $(0,1]$ and $f \in \mathcal{R}$ on $[c,1]$ for every $c>0$. Define
+    $$\int_{0}^{1}f(x) \,dx = \lim_{c\to 0} \int_{c}^{1}f(x) \,dx$$
+    if this limit exists (and is finite).\\
+    (a) If $f \in \mathcal{R}$ on $[0,1]$, show that this definition of the integral agrees with the old one.\\
+    (b) Construct a function $f$ such that the above limit exists, although it fails to exist with $|f|$ in place of $f$. 
+\end{problem}
+\begin{solution}{}
+    Skip for now
+\end{solution}
+
+\begin{problem}{8}
+    Suppose $f\in \mathcal{R}$ on $[a,b]$ for every $b > a$ where $a$ is fixed. Define
+    $$\int_{a}^{\infty} f(x) \,dx = \lim_{b\to \infty} \int_{a}^{b} f(x) \,dx$$
+    if this limit exists (and is finite). Int that case, we say that the integral on the left converges. If it also converges
+    after $f$ has been replaced by $|f|$, it is said to converge absolutely. \\
+    Assume that $f(x) \ge 0$ and that $f$ decreases monotonically on $[,\infty)$. Prove that 
+    $$\int_{1}^{\infty} f(x)\,dx$$
+    converges if and only if
+    $$\sum_{n=1}^{\infty}f(n)$$
+    converges. (This is the so-called "integral test" for convergence of series)
+\end{problem}
+\begin{solution}{}
+    Assume $\sum_{n=1}^{\infty}f(n)$ converges. Then so does $\int_{1}^{\infty} f(x)\,dx$ since the partition $\{1,2,...,n\}$ has an
+    Upper sum equal to the sum. Lower sums yield the other way. 
+    \qed
+\end{solution}
+
+\begin{problem}{9}
+    skip for now
+\end{problem}
+\begin{solution}{}  
+\end{solution}
+
+\begin{problem}{10}
+    Let $p$ and $q$ be positive real numbers such that 
+    $$\frac{1}{p} + \frac{1}{q} = 1$$
+    Prove that following statements. \\
+    (a) If $u \ge 0$ and $v \ge 0$, then
+    $$uv \le \frac{u^p}{p} + \frac{v^q}{q}$$
+    Equality holds if and only if $u^p = v^q$.\\
+    (b) If $f \in \mathcal{R}(\alpha)$, $g \in \mathcal{R}(\alpha)$, $f\ge $, $g\ge 0$, and
+    $$\int_{a}^{b}f^p \,d\alpha = 1 =  \int_{a}^{b}g^q \,d\alpha$$
+    then
+    $$\int_{a}^{b}fg \,d\alpha \le 1$$
+    (c) If $f$ and $g$ are complex functions in $\mathcal{R}(\alpha)$, then
+    $$\bigg |\int_{a}^{b} fg \,d\alpha \bigg| \le \bigg\{\int_{a}^{b} |f|^p \,d\alpha \bigg\}^{1/p} \bigg\{\int_{a}^{b} |g|^q \,d\alpha \bigg\}^{1/q}$$
+    (d) Show that Holder's inequality is also true for the "improper" integrals described in exercise 7 and 8.
+\end{problem}
+\begin{solution}{}  
+    (a) $$\ln(uv) = \ln(u) + \ln(v) = \frac{\ln(u)*p}{p} + \frac{\ln(v)*q}{q}$$
+    $$=\frac{\ln(u^p)}{p} + \frac{\ln(v^q)}{q} \le \ln(\frac{u^p}{p}+\frac{v^q}{q})$$
+    The last inequality due to concavity of $\ln$. \\
+    (b) from part a let
+    $$fg \le \frac{f^p}{p}+\frac{g^q}{q}$$
+    then
+    $$\int_{a}^{b} fg \le \int_{a}^{b}\frac{f^p}{p}+\int_{a}^{b}\frac{g^q}{q}$$
+    $$=\frac{\int_{a}^{b}f^p}{p}+\frac{\int_{a}^{b}g^q}{q}$$
+    $$=\frac{1}{p}+\frac{1}{q} = 1$$
+    (c) replace $f$ and $g$ with 
+    $\frac{|f|}{(\int_{a}^{b}|f|^p\,d\alpha)^{1/p}}$ and $\frac{|g|}{(\int_{a}^{b}|g|^q\,d\alpha)^{1/q}}$
+    and integrate both sides. The right hand side becomes 1, and then multipling both sides by the left hand side's denominator,
+    and the result follows.\\
+    (d) skip for now.
+\end{solution}
+
+\begin{problem}{11}
+    Let $\alpha$ be a fixed increasing function on $[a,b]$. For $u \in \mathcal{R}(\alpha)$, define
+    $$||u||_2 = \bigg \{\int_{a}^{b}|u|^2\,d\alpha \bigg\}^{1/2}$$
+    Suppose $f,g,h \in \mathcal{R}(\alpha)$ and prove the triangle inequality
+    $$||f-h||^2 \le ||f-g||_2 + ||g-h||_2$$
+\end{problem}
+\begin{solution}{}
+    $$||f-h||_2 = \bigg (\int_{a}^{b} |f-h|^2 \bigg )^{1/2}$$
+    $$= \bigg (\int_{a}^{b} |(f-g)+(g-h)|^2 \bigg )^{1/2}$$
+    $$= \bigg (\int_{a}^{b} |(f-g)|^2+2|f-g||g-h|+|(g-h)|^2 \bigg )^{1/2}$$
+    $$= \bigg (\int_{a}^{b} |(f-g)|^2+2\int_{a}^{b}|f-g||g-h|+\int_{a}^{b}|(g-h)|^2 \bigg )^{1/2}$$
+    $$\le \bigg (||(f-g)||_2+2||f-g||_2||g-h||_2+||(g-h)||_2 \bigg )^{1/2}$$
+    $$= \bigg ((||(f-g)||+||(g-h)||)^2 \bigg )^{1/2}$$
+    \qed
+\end{solution}
+
+\begin{problem}{12}
+    With the notations of Exercise 11, suppose $f\in \mathcal{R}(\alpha)$ and $\epsilon>0$. Prove that there
+    exists a continuous function $g$ on $[a,b]$ such that $||f-g||_2 < \epsilon$.\\
+    Hint: Let $P=\{x_0,...,x_n\}$ be a suitable partition of $[a,b]$, define 
+    $$g(t)=\frac{x_i-t}{\Delta x_i}f(x_{i-1})+\frac{t-x_{i-1}}{\Delta x_i}f(x_i)$$
+    if $x_{i-1} \le t \le x_i$.
+\end{problem}
+\begin{solution}{}
+    $g$ is continuous since it's a linear combination of $f$ which is integrable so with respect to some partition,
+    $g$ is continuous. Then
+    $$f(t)-g(t)=\frac{x_i-t}{\Delta x_i}(f(t)-f(x_{i-1}))+\frac{t-x_{i-1}}{\Delta x_i}(f(t)-f(x_i))$$
+    Then
+    $$\int_{a}^{b}|f-g|^2\,d\alpha = \sum_{i=0}^{N}\int_{x_i}^{x_{i+1}}|f-g|^2\,d\alpha$$
+    since $f$ is integrable, we can choose a partition such that $M_i-m_i < 2M$ where $M$ is $sup(f)$,
+    and $\Delta \alpha(x) < \frac{\epsilon^2}{4M^2}$
+    $$\le \sum_{i=0}^{N}(M_i-m_i)^2\Delta \alpha$$
+    $$\le 4M^2\sum_{i=0}^{N}\Delta \alpha$$
+    $$\le 4M^2(\frac{\epsilon^2}{4M^2}) = \epsilon^2$$
+    \qed
+\end{solution}
+
+\begin{problem}{13}
+    Define 
+    $$f(x)=\int_{x}^{x+1}sin(t^2)dt$$
+    (a) Prove that $|f(x)| < \frac{1}{x}$ if $x>0$.\\
+    Hint: put $t^2=u$ and integrate by parts to show that $f(x)$ is equal to
+    $$\frac{\cos(x^2)}{2x} - \frac{cos[x+1]}{2(x+1)} - \int_{x^2}^{(x+1)^2} \frac{\cos u}{4u^{3/2}}$$
+    (b) 
+\end{problem}
+\begin{solution}{}
+    (a) Using $u$ substitution and integration by parts we can get the result as in the hint. Then since $cos$ attains
+    its max of $1$ we let $\cos u =1$ and integrate the remaining integral and plug in the ends points which grants
+    $$\frac{1+cos(x^2)}{2x}-  \frac{1+cos[(x+1)^2]}{2(x+1)}$$
+    the second term can never be negative since so the maximum of the whole expression is when it is zero so
+    $$\le \frac{1+cos(x^2)}{2x}$$
+    similarly cosine's max is 1 so
+    $$\le \frac{1+1}{2x} = \frac{1}{x}$$
+    The fact that cosine's min is $-1$ yields that
+    $$f(x) \ge -\frac{1}{x}$$
+\end{solution}
+
+\begin{problem}{}
+\end{problem}
+\begin{solution}{}  
+\end{solution}
+
+\end{document}
