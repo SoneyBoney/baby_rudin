@@ -258,7 +258,11 @@
     (a) Prove that $|f(x)| < \frac{1}{x}$ if $x>0$.\\
     Hint: put $t^2=u$ and integrate by parts to show that $f(x)$ is equal to
     $$\frac{\cos(x^2)}{2x} - \frac{cos[x+1]}{2(x+1)} - \int_{x^2}^{(x+1)^2} \frac{\cos u}{4u^{3/2}}$$
-    (b) 
+    (b) Prove that 
+    $$2xf(x)=\cos(x^2)-\cos[(x+1)^2] + r(x)$$
+    where $|r(x)| < c/x$ and $c$ is a constant.\\
+    (c) Find the upper and lower limits of $xf(x)$ as $x\to \infty$.\\
+    (d)
 \end{problem}
 \begin{solution}{}
     (a) Using $u$ substitution and integration by parts we can get the result as in the hint. Then since $cos$ attains
@@ -270,6 +274,65 @@
     $$\le \frac{1+1}{2x} = \frac{1}{x}$$
     The fact that cosine's min is $-1$ yields that
     $$f(x) \ge -\frac{1}{x}$$
+    (b) multiply the right hand side of $f(x)$ by $2x$ and do the same thing as in (a), and the last integral can again be 
+    bounded. \\
+    (c) 
+\end{solution}
+
+\begin{problem}{14}
+    basically same problem as 13, but converges faster.
+\end{problem}
+\begin{solution}{}
+\end{solution}
+
+\begin{problem}{15}
+    Suppose $f$ is a real, continuously diffrentiable function on $[a,b]$, $f(a)=f(b)=0$, and
+    $$\int_{a}^{b}f^2(x)\,dx=1$$
+    Prove that 
+    $$\int_{a}^{b}xf(x)f'(x)\,dx=-\frac{1}{2}$$
+    and that 
+    $$\int_{a}^{b}[f'(x)]^2\,dx \cdot \int_{a}^{b}x^2f^2(x)\,dx > \frac{1}{4}$$
+\end{problem}
+\begin{solution}{}
+    $$\int_{a}^{b}F(x)g(x) = F(b)G(b)-F(a)G(a)-\int_{a}^{b}f(x)G(x)$$
+    Integrate by parts and let $F=xf(x),g=f'(x)$, then
+    $$\int_{a}^{b}xf(x)f'(x)\,dx= -\int_{a}^{b} f(x)(xf'(x)+f(x))\,dx$$
+    so we have
+    $$\int_{a}^{b}xf(x)f'(x)\,dx=-\int_{a}^{b}xf'(x)f(x)\,dx-\int_{a}^{b}f^2(x)\,dx$$
+    $$2\int_{a}^{b}xf(x)f'(x)\,dx=-1$$
+    $$\int_{a}^{b}xf(x)f'(x)\,dx=-\frac{1}{2}$$
+    The inequality follows from Holder's inequality as proved in problem 10.
+    \qed
+\end{solution}
+
+\begin{problem}{16}
+    For $1<s<\infty$, define
+    $$\zeta(s)=\sum_{n=1}^{\infty}\frac{1}{n^s}$$
+    (This is Riemann's zeta function, of great importance in the study of the distribution of prime
+    numbers.) Prove that\\
+    (a) $\zeta(s) = s\int_{1}^{\infty}\frac{[x]}{x^{s+1}}\,dx$ \\
+    and that
+    (b) $\zeta(s) = \frac{s}{s-1}-s\int_{1}^{\infty}\frac{x-[x]}{x^{s+1}}\,dx$\\
+    where $[x]$ denotes the greatest integer $\ge x$.\\
+    Prove that the integral in (b) converges for all $s > 0$. 
+\end{problem}
+\begin{solution}{}
+    (a) the floor function makes $x$ constant between integer intervals, thus
+    $$s\int_{1}^{\infty}\frac{[x]}{x^{s+1}}\,dx = s \sum_{n=1}^{\infty}n\cdot \int_{n}^{n+1}\frac{1}{x^{s+1}}\,dx$$
+    $$=s\sum_{n=1}^{\infty}n\cdot \Big[-\frac{1}{s}\cdot\frac{1}{x^s}\Big]_{n}^{n+1}$$
+    $$=s\frac{1}{s}\sum_{n=1}^{\infty}n\cdot (\frac{1}{n^s}-\frac{1}{(n+1)^s})$$
+    the sum partially telescopes into the wanted result.\\
+    (b) By linearity of integrals, we only need to show that
+    $$\frac{s}{s-1} = s \cdot \int_{1}^{\infty} \frac{1}{x^s}$$
+    which is clear. Convergence is also clear from b.
+\end{solution}
+
+\begin{problem}{17}
+    Suppose $\alpha$ monotonically on $[a,b]$, $g$ is continuous, and $g(x)=G'(x)$ for $a \le x \le b$. Prove that
+    $$\int_{a}^{b}\alpha(x)g(x)\,dx=G(b)\alpha(b)-G(a)\alpha(a)-\int_{a}^{b}G\,d\alpha$$
+    Hint: Take $g$ real, without loss of generality.
+\end{problem}
+\begin{solution}{}  
 \end{solution}
 
 \begin{problem}{}
