@@ -328,16 +328,54 @@
 \end{solution}
 
 \begin{problem}{17}
-    Suppose $\alpha$ monotonically on $[a,b]$, $g$ is continuous, and $g(x)=G'(x)$ for $a \le x \le b$. Prove that
+    Suppose $\alpha$ increases monotonically on $[a,b]$, $g$ is continuous, and $g(x)=G'(x)$ 
+    for $a \le x \le b$. Prove that
     $$\int_{a}^{b}\alpha(x)g(x)\,dx=G(b)\alpha(b)-G(a)\alpha(a)-\int_{a}^{b}G\,d\alpha$$
-    Hint: Take $g$ real, without loss of generality.
+    Hint: Take $g$ real, without loss of generality. Given $P=\{x_0,...,x_n\}$,
+    choose $t_i\in(x_{i-1},x_i)$ so that $g(t_i)\Delta x_i = G(x_i)-G(x_{i-1})$. Show that
+    $$\sum_{i=1}^{n}\alpha(x_i)g(t_i)\Delta x_i=G(b)\alpha(b)-G(a)\alpha(a)-\sum_{i=1}^{n}G(x_{i-1})\Delta \alpha_i$$
 \end{problem}
-\begin{solution}{}  
+\begin{solution}{}
+    Following the hint we choose $t_i$ such that
+    $$\sum_{i=1}^{n}\alpha(x_i)g(t_i)\Delta x_i = \sum_{i=1}^{n}\alpha(x_i)[G(x_i)-G(x_{i-1})]$$
+    $$=\sum_{i=1}^{n}\alpha(x_i)G(x_i)-\alpha(x_i)G(x_{i-1})$$
+    $$=\sum_{i=1}^{n}[\alpha(x_i)G(x_i)-\alpha(x_{i-1})G(x_{i-1})]+[\alpha(x_{i-1})G(x_{i-1})-\alpha(x_i)G(x_{i-1})]$$
+    $$=\sum_{i=1}^{n}\alpha(x_i)G(x_i)-\alpha(x_{i-1})G(x_{i-1})+\sum_{i=1}^{n}\alpha(x_{i-1})G(x_{i-1})-\alpha(x_i)G(x_{i-1})$$
+    $$=\sum_{i=1}^{n}\alpha(x_i)G(x_i)-\alpha(x_{i-1})G(x_{i-1})+\sum_{i=1}^{n}G(x_{i-1})[\alpha(x_{i-1})-\alpha(x_i)]$$
+    The first sum telescopes do just the end points:
+    $$=G(b)\alpha(b)-G(a)\alpha(a)+\sum_{i=1}^{n}G(x_{i-1})\Delta \alpha_i$$
+    Since this holds for all partitions, the result follows. Integrability follows from the fact that $g$ is
+    continuous and $\alpha$ is monotonic. Monotonicty implies that there is at most a countable number of
+    simple discontinuities, which have measure 0, i.e. we can cover those points with a finite number
+    of open intervals that have arbitrarily small length. 
+    \qed
 \end{solution}
 
-\begin{problem}{}
+\begin{problem}{18}
+    Let $\gamma_1,\gamma_2,\gamma_3$ be curves in the complex plane, defined on $[0,2\pi]$ by
+    $$\gamma_1(t)=e^{it} \qquad \gamma_1(t)=e^{2it} \qquad \gamma_1(t)=e^{2\pi it \sin(1/t)}$$
+    Show that these three curves have the same range, that $\gamma_1$ and $\gamma_2$ are rectifiable,
+    that the length of $\gamma_1$ is $2\pi$, that the length of $gamma_2$ is $4\pi$, and that
+    $\gamma_3$ is not rectifiable.
 \end{problem}
-\begin{solution}{}  
+\begin{solution}{}
+    The ranges of 1 and 2 are the same because it's the unit circl innit; the second one just goes around 
+    twice. The third one also since $2\pi t \sin(1/t)$ ranges covers 0 to 1. \\
+    The lengths of 1 and 2 are routine integration computations and are finite, $2\pi$ and $4\pi$ 
+    respectively.
+\end{solution}
+
+\begin{problem}{19}
+    Let $\gamma_1$ be a curve in $R^k$, defined on $[a,b]$; let $\phi$ be a continuous 1-1 mappingof
+    $[c,d]$ onto $[a,b]$, such that $\phi(c)=a$; and define $\gamma_2(s)=\gamma_1(\phi(s))$. Prove
+    that $\gamma_2$ is an arc, a closed curve, or a rectifiable curve if and only if the same is true
+    of $\gamma_1$. Prove that $\gamma_1$ and $\gamma_2$ have the same length.
+\end{problem}
+\begin{solution}{}
+    Since continuity is preserved by composition, and that $\phi$ is a bijection, both are arcs if 
+    either one is. Continuity of $\phi$ implies that $\phi(d)=b$. So connectedness follows.
+    Integrability and lengths follows from that fact that $\phi$ also forms a bijection between
+    partitions and so the final integral is equal.
 \end{solution}
 
 \end{document}
