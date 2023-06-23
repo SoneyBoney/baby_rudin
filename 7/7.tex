@@ -1,0 +1,150 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%This is a science homework template. Modify the preamble to suit your needs. 
+%The junk text is   there for you to immediately see how the headers/footers look at first 
+%typesetting.
+
+
+\documentclass[12pt]{article}
+
+%AMS-TeX packages
+\usepackage{amssymb,amsmath,amsthm} 
+%geometry (sets margin) and other useful packages
+\usepackage[margin=1.25in]{geometry}
+\usepackage{graphicx,ctable,booktabs}
+
+
+%
+%Redefining sections as problems
+%
+\makeatletter
+\newenvironment{problem}{\@startsection
+       {section}
+       {1}
+       {-.2em}
+       {-3.5ex plus -1ex minus -.2ex}
+       {2.3ex plus .2ex}
+       {\pagebreak[3]%forces pagebreak when space is small; use \eject for better results
+       \large\bf\noindent{P }
+       }
+       }
+\makeatother
+
+\makeatletter
+\newenvironment{solution}{\@startsection
+       {subsection}
+       {2}
+       {-.2em}
+       {-3.5ex plus -1ex minus -.2ex}
+       {2.3ex plus .2ex}
+       {\pagebreak[3]%forces pagebreak when space is small; use \eject for better results
+       \large\bf\noindent\emph{(sol) }
+       }
+       }
+\makeatother
+
+%
+%Fancy-header package to modify header/page numbering 
+%
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%\addtolength{\headwidth}{\marginparsep} %these change header-rule width
+%\addtolength{\headwidth}{\marginparwidth}
+\chead{} 
+\rhead{\thepage} 
+\cfoot{} 
+\renewcommand{\headrulewidth}{.3pt} 
+\renewcommand{\footrulewidth}{.3pt}
+\setlength\voffset{-0.25in}
+\setlength\textheight{648pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
+%Contents of problem set
+%    
+\begin{document}
+
+\title{Chapter 7}
+\author{Campinghedgehog}
+\date{June 14, 2023}
+
+\maketitle
+
+\thispagestyle{empty}
+
+\begin{problem}{2}
+\end{problem}
+\begin{solution}{}
+    Since both sequences converge uniformly (to $f$ and $g$), fix $\epsilon$ such that
+    $$|f_n(x)-f(x)| < \frac{\epsilon}{2}$$ 
+    for all $x$ when $n > N$ and 
+    $$|g_m(x)-g(x)| < \frac{\epsilon}{2}$$
+    for all $x$ when $m>M$. Let $T=max(N,M)$. Then if $n > T$,
+    $$|f_n(x)+g_n(x) - f(x)-g(x)| = |f_n(x)-f(x)+g_n(x)-g(x)|$$
+    $$\le  |f_n(x)-f(x)|+|g_n(x)-g(x)| = \epsilon$$
+    Next assume that both sequences are of bounded functions. From problem 1, we can conclude that both
+    sequences are uniformly bounded, that is there exists $T$ such that
+    $$|f_i(x)| < T$$
+    for all $x$ and $i$ and there exists $P$ such that
+    $$|g_i(x)| < P$$
+    for all $x$ and $i$. Then let $M=max(T,P)$. Then
+    $$|f_n(x)g_n(x)-f(x)g(x)| = |f_n(x)g_n(x)-f(x)g_n(x)+f(x)g_n(x)-f(x)g(x)|$$
+    $$=|g_n(x)(f_n(x)-f(x))+f(x)(g_n(x)-g(x))| \le |M(f_n(x)-f(x))+M(g_n(x)-g(x))|$$
+    $$\le M|(f_n(x)-f(x))|+M|(g_n(x)-g(x))|$$
+    and since the sequences are uniformly continuous, for all $\epsilon > 0$
+    $$< M\epsilon+M\epsilon = 2M\epsilon$$
+    thus $\{f_ng_n\}$ is uniformly convergent.
+    \qed
+\end{solution}
+
+\begin{problem}{3}
+    Construct sequences $\{f_n\}$, $\{g_n\}$ which converge uniformly on some set $E$, but such that $\{f_ng_n\}$ does 
+    not converge uniformly on $E$.
+\end{problem}
+\begin{solution}{}
+    $f_n(x)=x$ for all $x$ converges to $f(x)=x$ uniformly with $\epsilon=0$ for all $n$. 
+    $g_n(x)=\frac{1}{n}$ for all $x$ is the same. So $f_n(x)g_n(x)=0$. But then for any $n$, there exists 
+    an $x$ equal to it, thus for all $n$ there exists some $x$ such that $f_n(x)g_n(x)=\frac{x}{n}=1 > \epsilon$.
+    \qed
+\end{solution}
+
+\begin{problem}{4}
+    Consider
+    $$f(x)=\sum_{n=1}^{\infty}\frac{1}{1+n^2x}$$
+    For what values of $x$ does the series converge absolutely? On what intervals does it converge uniformly?
+    On what intervals does it fail to converge uniformly? Is $f$ continuous wherever the series converges?
+    Is $f$ bounded?
+\end{problem}
+\begin{solution}{}
+    The series is almost convergent (comparing with $\frac{1}{n^2}$), except for a few points. When $x=0$ 
+    we get $\sum_{n=1}^{\infty}1$ which diverges. There are countable number of points where a term is 
+    undefined, namely $-\frac{1}{n^2}$ making the denominator 0.\\
+    For any $x>0$ it converges uniformly since given some $\epsilon>0$, $\frac{1}{1+n^2x} \le \frac{1}{n^2\epsilon}$ and the right
+    hand side converges uniformly. The same is true for $x<0$ except for the aformentioned countable points.\\
+    Any interval containing 0 on the boundary does not converge uniformly. We can always pick an $x$ so that the partial sums never
+    converge.\\
+    $f$ does not converge at $x=0$ so it's not bounded.
+\end{solution}
+
+\begin{problem}{5}
+    Let
+    \begin{equation}
+        f_n(x)=
+        \begin{cases}
+            0, & \bigg (x < \frac{1}{n+1} \bigg ) \\
+            \sin^2\frac{\pi}{x}, & \bigg (\frac{1}{n+1} \le x \le \frac{1}{n} \bigg) \\
+            0, &  \bigg(\frac{1}{n} < x \bigg) \\
+        \end{cases}
+    \end{equation}
+    Show that $\{f_n\}$ converges to a continuous function, but not uniformly. Use the series $\sum f_n$ to
+    show that the absolute convergence, even for all $x$, does not imply uniform convergence.
+\end{problem}
+\begin{solution}{}
+\end{solution}
+
+\begin{problem}{}
+\end{problem}
+\begin{solution}{}
+\end{solution}
+
+\end{document}
