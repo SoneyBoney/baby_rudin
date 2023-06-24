@@ -140,6 +140,73 @@
     show that the absolute convergence, even for all $x$, does not imply uniform convergence.
 \end{problem}
 \begin{solution}{}
+    The function converges (point-wise at least) to $f=0$, since rationals are dense in reals, fixing any $x$
+    there is always an $n$ such that $f_n(x)=0$.\\
+    The series cannot converge uniformly because for any $n$, there exists some $m$ such that 
+    $x=\frac{1}{2m+\frac{1}{2}}$ such that $\frac{1}{n+1} < x < \frac{1}{n+1}$, thus
+    $f(x) = \sin^2(2\pi m+\frac{\pi}{2})=1$.
+    \qed
+\end{solution}
+
+\begin{problem}{6}
+    Prove that the series
+    $$\sum_{n=1}^{\infty} (-1)^n \frac{x^2+n}{n^2}$$
+    converges uniformly in every bounded interval, but does not converge absolutely for any value of $x$.
+\end{problem}
+\begin{solution}{}
+    Skip for now.
+\end{solution}
+
+\begin{problem}{7}
+    For $n=1,2,3,...$, $x$ real, put
+    $$f_n(x)=\frac{x}{1+nx^2}$$
+    Show that $\{f_n\}$ converges uniformly to a function $f$, and that the equation
+    $$f'(x)=\lim_{n \to \infty} f'_n(x)$$
+    is correct if $x \ne 0$, but false if $x=0$.
+\end{problem}
+\begin{solution}{}
+    Using the quotient rule and differentiating $f_n$ and setting it equal to $0$ shows that $f_n$ has
+    its max at $x=\frac{1}{\sqrt{n}}$, at which $f_n(x)=\frac{1}{2\sqrt{n}}$. Thus the sequence $f_n$
+    is bounded by $\frac{1}{2\sqrt{n}}$ which converges uniformly to $f=0$. \\
+    Since 
+    $$f'_n(x)=\frac{1-nx^2}{(1+nx^2)^2}$$
+    so
+    $$f'_n(0)=1$$
+    so $\lim_{n\to \infty}f'_n(x)=1$ but since $f=0$, $f'=0$.
+    \qed
+\end{solution}
+
+\begin{problem}{8}
+    If 
+    \begin{equation}
+        I(x)=
+        \begin{cases}
+            0, & \big (x \le 0 \big) \\
+            1, &  \big(x > 0 \big) \\
+        \end{cases}
+    \end{equation}
+    if $\{x_n\}$ is a sequence of distinct points of $(a,b)$, and if $\sum |c_n|$ converges, prove that 
+    the series
+    $$f(x)=\sum_{n=1}^{\infty} c_n I(x-x_n) \qquad (a \le x \le b)$$
+    converges uniformly, and that $f$ is continuous for every $x \ne x_n$.
+\end{problem}
+\begin{solution}{}
+    Since $I$ is just an indicator function, it follows that
+    $$f_N(x) = \sum_{n=1}^{N} c_n I(x-x_n) \le \sum_{n=1}^{N} |c_n|$$. Since $\sum |c_n|$ converges absolutely,
+    it follows that $f_n$ converges uniformly. \\
+    $f$ will be continuous if each $f_n$ is. And each $f_n$ is continuous if $x \ne x_n$, since if it 
+    "jumps" via the indicator function and misses or includes an extra term greater than some $\epsilon$ 
+    in the summation if so.
+\end{solution}
+
+\begin{problem}{9}
+    Let $\{f_n\}$ be a sequence of continuous functions which converges uniformly to a function $f$ on a 
+    set $E$. Prove that 
+    $$\lim_{n\to\infty}f_n(x_n)=f(x)$$
+    for every sequence of points $x_n\in E$ such that $x_n \to x$, and $x \in E$. Is the converse of this true?
+\end{problem}
+\begin{solution}{}
+    
 \end{solution}
 
 \begin{problem}{}
