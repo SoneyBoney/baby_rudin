@@ -206,7 +206,89 @@
     for every sequence of points $x_n\in E$ such that $x_n \to x$, and $x \in E$. Is the converse of this true?
 \end{problem}
 \begin{solution}{}
-    
+    Decouple $x_n$ from $f_n$ and call it $x_k$. Then we have
+    $$\lim_{k\to\infty}\lim_{n\to\infty}f_n(x_k) = \lim_{k\to\infty}f(x_k)$$
+    by uniform convergence. Then 
+    $$\lim_{k\to\infty}f(x_k) = f(x)$$. Or more rigorously,
+    Fix $\epsilon$. Pick $N$ such that if $n>N$, $|f_n(x)-f(x)| < \epsilon$ for all $x$ (by uniform convergence).
+    Then pick $M$ such that if $m>M$, $|x_m - x| < \delta$ such that 
+    $|f(x_m)-f(x)| < \epsilon$ (since $f$ is continuous). 
+    Then pick $k>max(N,M)$, thus
+    $$|f_k(x_k) - f(x)| = |f_k(x_k) - f(x_k) + f(x_k) - f(x)|$$
+    $$\le |f_k(x_k) - f(x_k)| + |f(x_k) - f(x)| < 2 \epsilon$$
+    Probem 5 is a counter example.
+\end{solution}
+
+\begin{problem}{10}
+    Letting $(x)$ denote that fractional part of the real number $x$, consider the function
+    $$f(x)=\sum_{n=1}^{\infty}\frac{(nx)}{n^2} \qquad (x \text{ real})$$
+    Find all discontinuities of $f$, and show that they form a countable dense set.
+    Show that $f$ is neverthless Riemann-integrable on every bounded interval.
+\end{problem}
+\begin{solution}{}
+    Discontinuities of $f$ would include all discontinuities of the partial sums
+    $$f_N(x)=\sum_{n=1}^{N}\frac{(nx)}{n^2}$$
+    The discontinuities are when $(nx)$ "jumps" back to $0$. This happens in all rationals since there will
+    always be an $n$ equal to the denominator of $x$, thus $f$ is discontinuities at all rationals. And the 
+    rationals are countable and dense in the reals.\\
+    $f$ is Riemann-integrable if each $f_n$ in the sequence is also Rieman-integrable. There are a finite
+    number of discontinuities given an $f_n$ since it is only a sum of $N$ terms. Thus $f$ is also
+    Riemann-integrable.
+    \qed
+\end{solution}
+
+\begin{problem}{11}
+    Suppose $\{f_n\}$, $\{g_n\}$ are defined on $E$, and \\
+    (a) $\sum f_n$ has uniformly bounded partial sums;\\
+    (b) $g_n \to 0$ uniformly on $E$;\\
+    (c) $g_1(x)\ge g_2(x)\ge g_3(x) \ge ...$ for every $x\in E$ \\
+    Prove that $\sum f_ng_n$ converges uniformly on $E$. Hint: Compare with Theorem 3.42.
+\end{problem}
+\begin{solution}{}
+    Choose $M$ such that $F_N = \sum_{n=1}^{N}f_n(x) < M$ for all $x$. Fix $\epsilon$. From b), choose $N$ such that 
+    $g_N<\frac{\epsilon}{2M}$. Then for $p,q \ge N$, 
+    $$|\sum_{n=p}^{q}f_ng_n|=|\sum_{n=p}^{q-1}F_n(g_n-g_{n+1})+F_qg_q-F_{p-1}g_p|$$
+    $$\le M|\sum_{n=p}^{q-1}(g_n-g_{n+1})+g_q+b_p|$$
+    $$=2g_pM\le 2g_NM\le \epsilon$$
+    for all $x$.
+    \qed
+\end{solution}
+
+\begin{problem}{12}
+    Suppose $g$ and $f_n(n=1,2,3,...)$ are defined on $(0,\infty)$, are Riemann-integrable on 
+    $[t,T]$ whenever $0<t<T<\infty$, $|f_n|\le g$, $f_n \to f$ uniformly on every compact subset of $(0,\infty)$
+    and
+    $$\int_{0}^{\infty} g(x) \,dx < \infty$$
+    Prove that 
+    $$\lim_{n\to \infty}\int_{0}^{\infty}f_n(x)\,dx=\int_{0}^{\infty}f(x)\,dx$$
+\end{problem}
+\begin{solution}{}
+    Want to first show that $\int_{0}^{\infty}f_n(x)\,dx$ exists for all $n$. For $a<b$, 
+    $$|\int_{a}^{t}f_n(x)\,dx \int_{b}^{t}f_n(x)\,dx| = |\int_{b}^{a}f_n(x)\,dx|$$
+    $$\le \int_{b}^{a}|f_n(x)|\,dx \le \int_{b}^{a}g(x)\,dx$$
+    And since $int_{0}^{\infty}g_n(x)\,dx$ exists, we can choose $a,b$ such that
+    $int_{b}^{a}g(x)\,dx < \epsilon$ for all $\epsilon$. Similarly for the lower end point.
+    It follows from Cauchy criterion that $\int_{0}^{\infty}f_n(x)\,dx$ exists.\\
+    Because of uniform convergence, $f\le g$ and so $\int_{0}^{\infty}f(x)\,dx$ also exists. 
+    Then
+    $$\bigg|\int_{0}^{\infty}f_n(x)\,dx-\int_{0}^{\infty}f(x)\,dx\bigg|$$
+    $$=\bigg|\int_{0}^{\infty}f_n(x)\,dx-\int_{a}^{b}f_n(x)\,dx
+    +\int_{a}^{b}f_n(x)\,dx-\int_{a}^{b}f(x)\,dx
+    +\int_{a}^{b}f(x)\,dx-\int_{0}^{\infty}f(x)\,dx\bigg|$$
+    $$\le\bigg|\int_{0}^{\infty}f_n(x)\,dx-\int_{a}^{b}f_n(x)\,dx\bigg|$$
+    $$+\bigg|\int_{a}^{b}f_n(x)\,dx-\int_{a}^{b}f(x)\,dx\bigg|
+    +\bigg|\int_{a}^{b}f(x)\,dx-\int_{0}^{\infty}f(x)\,dx\bigg|$$
+    $$=\bigg|\int_{0}^{\infty}f_n(x)\,dx-\int_{a}^{b}f_n(x)\,dx\bigg|$$
+    $$+\bigg|\int_{a}^{b}f_n(x)-f(x)\,dx\bigg|
+    +\bigg|\int_{a}^{b}f(x)\,dx-\int_{0}^{\infty}f(x)\,dx\bigg|$$
+    With uniform convergence the middle term can be made arbitrarily small. The fact that the improper 
+    integrals exist means that first and last terms can also be made arbitrarily small.
+    \qed
+\end{solution}
+
+\begin{problem}{13}
+\end{problem}
+\begin{solution}{}
 \end{solution}
 
 \begin{problem}{}
