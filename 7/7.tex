@@ -72,6 +72,17 @@
 
 \thispagestyle{empty}
 
+\begin{problem}{1}
+    Prove that every bounded uniformly convergent sequence of bounded functions is uniformly bounded.
+\end{problem}
+\begin{solution}{}
+    Pick $N$ such that if $n,m>=N$ 
+    $$|f_n(x)-f_m(x)|<1$$
+    for all $x$. Then let $M=max(M_1,...,M_N)$ where $|f_i| < M_i$. Then let $P=M+1$, then
+    if $i<N$, $|f_i| < M$ and if $i>N$ then $|f_i| < |f_N| + 1 \le M+1$.
+    \qed
+\end{solution}
+
 \begin{problem}{2}
 \end{problem}
 \begin{solution}{}
@@ -287,8 +298,99 @@
 \end{solution}
 
 \begin{problem}{13}
+    Assume that $\{f_n\}$ is a sequence of monotonically increasing functions on $\mathbb{R}^1$ with
+    $0\le f_n(x) \le 1$ for all $x$ and all $n$.\\
+    (a) Prove that there is a function $f$ and a sequence $\{n_k\}$ such that
+    $$f(x)=\lim_{k\to \infty}f_{n_k}(x)$$
+    for every $x\in \mathbb{R}^1$. (The existence of such a pointwise convergent subsequence is usually
+    called Helly's selection theorem).\\
+    (b) If, moreover, $f$ is continuous, prove that $f_{n_k}\to f$ uniformly on compact sets.
+    Hint: (i) Some subsequence $\{f_{n_i}\}$ converges at all rational points $r$, say, to $f(r)$.
+    (ii) Define $f(x)$, for any $x\in \mathbb{R}^1$, to be $\sup f(r)$, the $\sup$ taken over all $r\le x$.
+    (iii) Show that $f_{n_i}(x) \to f(x)$ at every $x$ at which $f$ is continuous. (This is where monotonicity
+    is strongly used.)
+    (iv) A subsequence of $\{f_{n_i}\}$ converges at every point of discontinuity of $f$ since there are at most
+    countably many such points. This proves (a). To prove (b), modify your proof of (iii) appropriately.
 \end{problem}
 \begin{solution}{}
+    From Theorem 7.23 there exists a sequence of functions that converges on any countable set. Let the 
+    countable set be the rationals. Then define $f(x)=\sup f(r)$ for $r\le x$. Points of continuity converge
+    since the rationals are dense in the reals. For points of discontinuity, since the functions are monotonically
+    increasing, there may only be a countable number of them; applying theorem 7.23 again to those points proves
+    a). \\
+    Skip b for now.
+\end{solution}
+
+\begin{problem}{14}
+    Skip for now
+\end{problem}
+\begin{solution}{}
+\end{solution}
+
+\begin{problem}{15}
+    Suppose $f$ is a continuous function on $\mathbb{R}^1$, $f_n(t)=f(nt)$ for $n=1,2,3,...$ and 
+    $\{f_n\}$ is equicontinuous on $[0,1]$. What conclusion can you draw about $f$?
+\end{problem}
+\begin{solution}{}
+    It has to be a constant function since if it is not, then using equicontinuity we can find 
+    $x,y$ with $|f_n(x)-f_n(y)| > \epsilon$. Then $|f_n(\frac{x}{n})-f_n(\frac{y}{n})| > \epsilon$
+    for all $n$, which contradicts equicontinuity.
+    \qed 
+\end{solution}
+
+\begin{problem}{16}
+    Suppose $\{f_n\}$ is an equicontinuous sequence of functions on a compact set $K$, and 
+    $\{f_n\}$ converges pointwise on $K$. Prove that $\{f_n\}$ converges uniformly on $K$.
+\end{problem}
+\begin{solution}{}
+    Fix $\epsilon$. Choose $N$ such that if $n>N$, then $|f_n(x)-f_n(y)| < \epsilon$ for all $x,y$
+    if $|x-y| < \delta$. Then also choose a $\delta$-cover of $K$. That is there exists a finite number
+    of open neighborhoods with center points $x_1,...,x_k$, with radius $\delta$. 
+    Fixing each of the points, using point-wise convergence, choose $M$ such that if 
+    $n,m > M$, $|f_n(x_i)-f_m(x_i)| < \epsilon$ for all $i$, which is finite.
+    Then, for $n,m > max(N,M)$,
+    $$|f_n(x)-f_m(x)|\le |f_n(x)-f_n(x_i)| + |f_n(x_i)-f_m(x_i)| + |f_m(x_i)-f_m(x)|$$
+    Equicontinuity implies the first and third terms being less than $\epsilon$. The middle term is
+    also less than $\epsilon$ since $n,m>M$. Thus
+    $$|f_n(x)-f_m(x)| < 3\epsilon$$
+    for all $x$.
+    \qed
+\end{solution}
+
+\begin{problem}{17}
+    Skip for now
+\end{problem}
+\begin{solution}{}
+\end{solution}
+
+\begin{problem}{18}
+    Let $\{f_n\}$ be a uniformly bounded sequence of functions which are Riemann-integrable on $[a,b]$,
+    and put
+    $$F_n(x)=\int_{a}^{x}f_n(t)\,dt$$
+    Prove that there exists a subsequence $\{F_{n_k}\}$ which converges uniformly on $[a,b]$.
+\end{problem}
+\begin{solution}{}
+    Looks like it's probably going to use theorem 7.25. The domain is compact. We need to show that it is
+    pointwise bounded and equicontinuous to use theorem 7.25. \\
+    Pointwise boundedness follows since for all $n$,
+    $$F_n(x)=\int_{a}^{x}f_n(t)\,dt \le M(b-a)$$
+    $M$ comes from uniform boundedness. This applies for all $x$.\\
+    Next, fix $\epsilon$. Then for some $\delta$, if $|x-y| < \delta$,
+    $$|F_n(x)-F_n(y)| = |\int_{a}^{x}f_n(t)\,dt - \int_{a}^{y}f_n(t)\,dt|$$
+    $$=|\int_{x}^{y}f_n(t)\,dt| \le \int_{x}^{y}|f_n(t)|\,dt$$
+    $$\le M|x-y| < M\delta$$
+    So if $\delta=\frac{\epsilon}{M}$, equicontinuity follows.
+    \qed
+\end{solution}
+
+\begin{problem}{19}
+    Let $K$ be a compact metric space, let $S$ be a subset of $\mathcal{C}(K)$. Prove that $S$ is compact
+    (with respect to the metric defined in Section 7.14) if and only if $S$ is uniformly closed, 
+    bounded, and equicontinuous. (If $S$ is not equicontinuous, then $S$ contains a sequence which has 
+    no equicontinuous subsequence, hence has no subsequence that converges uniformly on $K$).
+\end{problem}
+\begin{solution}{}
+    
 \end{solution}
 
 \begin{problem}{}
