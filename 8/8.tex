@@ -1,0 +1,118 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%This is a science homework template. Modify the preamble to suit your needs. 
+%The junk text is   there for you to immediately see how the headers/footers look at first 
+%typesetting.
+
+
+\documentclass[12pt]{article}
+
+%AMS-TeX packages
+\usepackage{amssymb,amsmath,amsthm} 
+%geometry (sets margin) and other useful packages
+\usepackage[margin=1.25in]{geometry}
+\usepackage{graphicx,ctable,booktabs,mathrsfs}
+
+
+%
+%Redefining sections as problems
+%
+\makeatletter
+\newenvironment{problem}{\@startsection
+       {section}
+       {1}
+       {-.2em}
+       {-3.5ex plus -1ex minus -.2ex}
+       {2.3ex plus .2ex}
+       {\pagebreak[3]%forces pagebreak when space is small; use \eject for better results
+       \large\bf\noindent{P }
+       }
+       }
+\makeatother
+
+\makeatletter
+\newenvironment{solution}{\@startsection
+       {subsection}
+       {2}
+       {-.2em}
+       {-3.5ex plus -1ex minus -.2ex}
+       {2.3ex plus .2ex}
+       {\pagebreak[3]%forces pagebreak when space is small; use \eject for better results
+       \large\bf\noindent\emph{(sol) }
+       }
+       }
+\makeatother
+
+%
+%Fancy-header package to modify header/page numbering 
+%
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%\addtolength{\headwidth}{\marginparsep} %these change header-rule width
+%\addtolength{\headwidth}{\marginparwidth}
+\chead{} 
+\rhead{\thepage} 
+\cfoot{} 
+\renewcommand{\headrulewidth}{.3pt} 
+\renewcommand{\footrulewidth}{.3pt}
+\setlength\voffset{-0.25in}
+\setlength\textheight{648pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
+%Contents of problem set
+%    
+\begin{document}
+
+\title{8}
+\author{Campinghedgehog}
+\date{July, 2023}
+
+\maketitle
+
+\thispagestyle{empty}
+
+\begin{problem}{1}
+    Define
+    \begin{equation}
+            f(x)=
+            \begin{cases}
+                    e^{-1/x^2}, & (x \ne 0) \\
+                    0, & (x=0) \\
+            \end{cases}
+    \end{equation}
+    Prove that $f$ has derivaties of all orders at $x=0$, and that $f^{(n)}(0)=0$ for
+    $n=1,2,3,\dots$.
+\end{problem}
+\begin{solution}{}
+\end{solution}
+
+\begin{problem}{2}
+    Let $a_{ij}$ be the number in the $i$th row and $j$th column of the array
+    $$-1 \qquad 0 \qquad 0 \qquad 0 \qquad \dots$$
+    $$\frac{1}{2} \quad -1 \qquad 0 \qquad 0 \qquad \dots$$
+    $$\frac{1}{4} \qquad \frac{1}{2} \quad -1 \qquad 0 \qquad \dots$$
+    $$\frac{1}{8} \qquad \frac{1}{4} \qquad \frac{1}{2} \quad -1 \qquad \dots$$
+    $$\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots$$
+    so that 
+    \begin{equation}
+        a_{ij}=
+        \begin{cases}
+                0, & (i < j) \\
+                -1, & (i=j) \\
+                2^{j-1}, & (i>j) \\
+        \end{cases}
+    \end{equation}
+    Prove that 
+    $$\sum_i\sum_ja_{ij}=-2, \qquad \sum_j\sum_ia_{ij}=0$$
+\end{problem}
+\begin{solution}{}
+    
+\end{solution}
+
+\begin{problem}{}
+\end{problem}
+\begin{solution}{}
+\end{solution}
+
+\end{document}
