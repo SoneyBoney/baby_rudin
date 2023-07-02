@@ -465,17 +465,61 @@
     for all $p,q \in X$.\\
     If $\phi(p)=f_p$ it follows that $\phi$ is an isometry (a distance-preserving mapping)
     of $X$ onto $\phi(X) \subset \mathscr{X}$.\\
-    Let $Y$ be the closure of $\phi(X)$ in $\mathscr{X}$. Show that $Y$ is complete.\\
+    Let $Y$ be the closure of $\phi(X)$ in $\mathscr{C}(X)$. Show that $Y$ is complete.\\
     $\emph{Conclusion: X is isometric to a dense subset of a complete metric space Y}$.\\
     (Exercise 24, Chap. 3 contains a different proof of this.)
 \end{problem}
 \begin{solution}{}
-    
+    From symmetry of metrics and triangle inequality, the first thing follows.\\
+    Norm is supremum norm so the supremum over $x\in X$ of
+    $$|f_p(x)-f_q(x)| = |d(x,p)-d(x,a)-d(x,q)+d(x,a)| = |d(x,p)-d(x,q)|$$
+    $$=|d(p,x)-d(x,q)| \le d(p,q)$$
+    Equality follows from the supremum norm.\\
+    Every closed subset of a complete metric space is complete.
+    \qed
 \end{solution}
 
-\begin{problem}{}
+\begin{problem}{25}
+    Suppose $\phi$ is a continuous bounded real function in the strip defined by 
+    $0\le x\le 1$, $-\infty<y<\infty$. Prove that the initial-value problem
+    $$y'=\phi(x,y), \qquad y(0)=c$$
+    has a solution. (Note that the hypotheses of this existence theorem are less stringent
+    than those of the corresponding uniqueness theorem; see Exercise 27, Chap. 5.)\\
+    Hint: Fix $n$. For $i=0,..,n$, put $x_i=\frac{i}{n}$. Let $f_n$ be a continuous function 
+    on $[0,1]$ such that $f_n(0)=c$,
+    $$f'_n(t)=\phi(x_i,f_n(x_i)) \qquad \text{if } x_i < t < x_{i+1}$$
+    and put
+    $$\Delta_n(t) = f'_n(t)-\phi(t,f_n(t))$$
+    except at the points $x_i$, where $\Delta_n(t)=0$. Then
+    $$f_n(x)=c+ \int_{0}^{x}[\phi(t,f_n(t))+\Delta_n(t)]\,dt$$
+    Choose $M<\infty$ so that $|\phi|\le M$. Verify the following assertions.\\
+    (a) $|f'_n| \le M$, $|\Delta_n| \le 2M$, $\Delta_n \in \mathscr{R}$, and $|f_n|\le |c|+M=M_1$, say on 
+    $[0,1]$ for all $n$.\\
+    (b) $\{f_n\}$ is equicontinuous on $[0,1]$, since $|f'_n| \le M$.\\
+    (c) Some $\{f_{n_k}\}$ converges to some $f$, uniformly on $[0,1]$.\\
+    (d) Since $\phi$ is uniformly continuous on the rectangle $0\le x \le 1$, $|y|\le M_1$,
+    $$\phi(t,f_{n_k}(t))\to\phi(t,f(t))$$
+    uniformly on $[0,1]$.\\
+    (e) $\Delta_n(t)\to 0$ uniformly on $[0,1]$, since
+    $$\Delta_n(t)=\phi(x_i,f_n(x_i))-\phi(t,f_n(t))$$
+    in $(x_i,x_{i+1})$.\\
+    (f) Hence 
+    $$f(x)=c+\int_{0}^{x}\phi(t,f(t))\,dt$$
+    This $f$ is a solution of the given problem.
 \end{problem}
 \begin{solution}{}
+    Skip for now.
+\end{solution}
+
+\begin{problem}{26}
+    Prove an analogous existence theorem for the initial-value problem
+    $$y'=\phi(x,y), \qquad y(0)=c$$
+    where now $x\in \mathbb{R}^k$, $y\in \mathbb{R}^k$, and $\phi$ is a continuous bounded mapping of the part 
+    of $\mathbb{R}^{k+1}$ defined by $0\le x \le 1$, $y\in \mathbb{R}^k$ into $\mathbb{R}^k$.
+\end{problem}
+\begin{solution}{}
+    Same as problem 25, each part has vector valued analogous proofs.
+    \qed
 \end{solution}
 
 \end{document}
