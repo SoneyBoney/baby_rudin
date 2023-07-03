@@ -107,7 +107,48 @@
     $$\sum_i\sum_ja_{ij}=-2, \qquad \sum_j\sum_ia_{ij}=0$$
 \end{problem}
 \begin{solution}{}
-    
+    Summing vertically first 
+    $$\sum_j\sum_ia_{ij}$$
+    we have that 
+    $$-1 + \sum_{k=1}^{\infty}2^{-k} = -1 + 1 = 0$$
+    for each $i$ thus $\sum_j\sum_ia_{ij}=0$.\\
+    Summing horizontally first
+    $$\sum_j\sum_ia_{ji}$$
+    we have
+    $$\sum_{k=0}^{\infty}-2^{-k} = -1 - \sum_{k=1}^{\infty}2^{-k}=-1-1=-2$$
+    \qed
+\end{solution}
+
+\begin{problem}{3}
+    Prove that 
+    $$\sum_i\sum_j a_{ij} = \sum_j\sum_i a_{ij}$$
+    if $a_{ij}\ge 0$ for all $i$ and $j$ (the case $+\infty = +\infty$ may occur).
+\end{problem}
+\begin{solution}{}
+    Follows from theorem 8.3 for the convergent case. The divergent case is such that if one
+    sum diverges both of them do so equality follows.
+    \qed
+\end{solution}
+
+\begin{problem}{4}
+    Prove that following limit relations:
+    $$(a) \lim_{x\to 0}\frac{b^x - 1}{x} = \log b$$
+    $$(b) \lim_{x\to 0}\frac{\log(1+x)}{x} = 1$$
+    $$(c) \lim_{x\to 0}(1+x)^{1/x} = e$$
+    $$(d) \lim_{n\to \infty}\bigg(1+\frac{x}{n}\bigg)^n = e^x$$
+\end{problem}
+\begin{solution}{}
+    (a) Using L'hospital's rule, the denominator becomes 1 and numerator $\log b$.\\
+    (b) Same as in a), we get $\lim_{x\to 0}\frac{1}{1+x}=1$\\
+    (c) 
+    $$\lim_{x\to 0}(1+x)^{1/x} = \lim_{x\to 0} e^{\frac{\log(1+x)}{x}}$$
+    $$= e^{\lim_{x\to 0}\frac{\log(1+x)}{x}} = e^1 = e$$
+    (d) 
+    $$\lim_{n\to \infty}\bigg(1+\frac{x}{n}\bigg)^n=
+    \lim_{n\to \infty}\bigg(\bigg(1+\frac{x}{n}\bigg)^{\frac{n}{x}}\bigg)^x$$
+    $$=\bigg(\lim_{y\to 0}\bigg(1+y\bigg)^{\frac{1}{y}}\bigg)^x$$
+    $$=e^x$$
+    \qed
 \end{solution}
 
 \begin{problem}{}
